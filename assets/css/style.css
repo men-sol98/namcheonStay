@@ -146,7 +146,7 @@ ul {
   z-index: 2;
 
   /* 여기에 배경 이미지 추가 */
-  background-image: url("../assets/images/hero_content_bg.png"); /* 여기에 제공된 이미지 URL을 넣으세요 */
+  background-image: url("../images/hero_content_bg.png"); /* 여기에 제공된 이미지 URL을 넣으세요 */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

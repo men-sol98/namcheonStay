@@ -1,0 +1,589 @@
+/* Google Fonts - Poppins */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+/* Basic Styles & Global Resets */
+:root {
+  --primary-color: #2c3e50;
+  --secondary-color: #3498db;
+  --text-color-dark: #333;
+  --text-color-light: #fff;
+  --bg-color-light: #f4f7f9;
+  --card-bg-color: rgba(255, 255, 255, 0.8);
+  --card-border-radius: 20px;
+  --box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  color: var(--text-color-dark);
+  line-height: 1.6;
+  background-color: var(--bg-color-light);
+}
+
+a {
+  text-decoration: none;
+  color: var(--secondary-color);
+}
+
+ul {
+  list-style: none;
+}
+
+/* Header & Navigation */
+.header {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-image: url("/assets/images/hero_content_bg.png");
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  color: var(--text-color-light);
+  text-align: center;
+  text-shadow: #333;
+  background-repeat: no-repeat;
+}
+
+.header::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+/* 스크롤 시 내비게이션 바의 스타일 */
+.nav.nav-scrolled {
+  background-color: rgba(255, 255, 255, 0.9); /* 투명한 흰색 배경 */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* 스크롤 시 글자 색상 변경 */
+.nav.nav-scrolled .nav-links a,
+.nav.nav-scrolled .logo {
+  color: var(--text-color-dark); /* 검정색 글씨 */
+  mix-blend-mode: normal; /* mix-blend-mode 해제 */
+}
+
+/* 스크롤 시 버튼 스타일 변경 */
+.nav.nav-scrolled .book-now-btn {
+  background-color: var(--secondary-color);
+  color: var(--text-color-light);
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 5%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* 다른 콘텐츠 위에 보이도록 높은 값 설정 */
+  transition: background-color 0.3s ease;
+  mix-blend-mode: var(--card-bg-color);
+}
+
+.logo {
+  color: white; /* 기본 글자색을 흰색으로 설정 */
+  text-shadow: #333;
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.nav-links {
+  color: white;
+  mix-blend-mode: var(--text-color-dark);
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-links a {
+  color: white;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  text-shadow: #333;
+}
+
+.nav-links a:hover {
+  color: var(--secondary-color);
+}
+
+.book-now-btn {
+  background-color: var(--secondary-color);
+  color: var(--text-color-light);
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.book-now-btn:hover {
+  background-color: #2980b9;
+}
+
+.hero-section {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+
+  /* 여기에 배경 이미지 추가 */
+  background-image: url("/assets/images/hero_content_bg.png"); /* 여기에 제공된 이미지 URL을 넣으세요 */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  /* 오버레이를 hero-section에 직접 추가 */
+  position: absolute; /* header의 자식으로 */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex; /* 내부 hero-content를 중앙 정렬하기 위해 */
+  align-items: center;
+  justify-content: center;
+}
+
+/* hero-section의 배경 이미지 위에 반투명 오버레이를 추가하여 텍스트 가독성을 높입니다. */
+.hero-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2); /* 어두운 반투명 오버레이 */
+  z-index: -1; /* hero-content 뒤에 오도록 */
+  border-radius: var(
+    --card-border-radius
+  ); /* hero-content와 통일된 border-radius 적용 */
+}
+
+.hero-content {
+  /* 기존 스타일 */
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border-radius: var(--card-border-radius);
+  padding: 4rem;
+  max-width: 600px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  backdrop-filter: blur(10px);
+}
+
+.premium-badge {
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  opacity: 0.8;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin: 0.5rem 0 1rem;
+}
+
+.hero-content p {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+.hero-content .book-now-btn {
+  padding: 1rem 2.5rem;
+}
+
+/* Common Section Styles */
+section {
+  padding: 6rem 5%;
+  text-align: center;
+}
+
+section h2 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+section > p {
+  font-size: 1.1rem;
+  color: #777;
+  max-width: 700px;
+  margin: 0 auto 3rem;
+}
+
+/* Why Choose Us Section */
+.why-choose-us {
+  background-color: #fff;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.feature-item {
+  background-color: var(--card-bg-color);
+  padding: 2.5rem;
+  border-radius: var(--card-border-radius);
+  box-shadow: var(--box-shadow);
+  text-align: left;
+  transition: transform 0.3s ease;
+}
+
+.feature-item:hover {
+  transform: translateY(-5px);
+}
+
+.feature-item .icon {
+  width: 50px;
+  height: 50px;
+  background-color: var(--secondary-color);
+  border-radius: 50%;
+  margin-bottom: 1rem;
+}
+
+.feature-item h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+/* Our Properties Section */
+.our-properties {
+  background-color: var(--bg-color-light);
+  padding: 6rem 5%;
+  text-align: center;
+}
+
+.properties-header h2 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.properties-header p {
+  font-size: 1.1rem;
+  color: #777;
+  max-width: 700px;
+  margin: 0 auto 3rem;
+}
+
+.properties-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.property-card {
+  background-color: var(--card-bg-color);
+  border-radius: var(--card-border-radius);
+  box-shadow: var(--box-shadow);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.property-card:hover {
+  transform: translateY(-5px);
+}
+
+.property-image {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+
+.property-info {
+  padding: 2rem;
+  text-align: left;
+}
+
+.property-info h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.property-info p {
+  font-size: 1rem;
+  color: #777;
+  margin-bottom: 1.5rem;
+}
+
+.book-property-btn {
+  display: inline-block;
+  background-color: var(--secondary-color);
+  color: var(--text-color-light);
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.book-property-btn:hover {
+  background-color: #2980b9;
+}
+
+/* Location Section */
+.location-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+}
+
+@media (min-width: 992px) {
+  .location-section {
+    flex-direction: row;
+    text-align: left;
+  }
+
+  .location-content,
+  .interactive-map {
+    flex: 1;
+  }
+}
+
+.location-content {
+  max-width: 600px;
+}
+
+.location-content h2 {
+  text-align: left;
+}
+
+.location-content h3 {
+  text-align: left;
+}
+
+.location-content > p {
+  text-align: left;
+  margin-left: 0;
+}
+
+.location-details {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.location-details li {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.location-details .icon {
+  width: 40px;
+  height: 40px;
+  background-color: var(--secondary-color);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.view-on-map-btn {
+  display: inline-block;
+  background: none;
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+  padding: 0.75rem 2rem;
+  border-radius: 50px;
+  font-weight: 500;
+  margin-top: 2rem;
+  transition: all 0.3s ease;
+}
+
+.view-on-map-btn:hover {
+  background-color: var(--primary-color);
+  color: var(--text-color-light);
+}
+
+/* .interactive-map {
+  background-color: var(--card-bg-color);
+  padding: 4rem 2rem;
+  border-radius: var(--card-border-radius);
+  box-shadow: var(--box-shadow);
+  text-align: center;
+}
+
+.interactive-map h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+} */
+
+/* CTA Section */
+.cta-section {
+  background-color: var(--secondary-color);
+  color: var(--text-color-light);
+}
+
+.cta-section h2,
+.cta-section p {
+  color: var(--text-color-light);
+}
+
+.cta-section .book-now-btn {
+  background-color: var(--text-color-light);
+  color: var(--secondary-color);
+}
+
+.cta-section .book-now-btn:hover {
+  background-color: #eee;
+}
+
+.large-btn {
+  padding: 1.2rem 3rem;
+  font-size: 1.1rem;
+}
+
+/* Footer */
+.footer {
+  padding: 2rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #777;
+}
+
+/* Footer Styles */
+.footer {
+  background-color: var(--primary-color);
+  color: var(--text-color-light);
+  padding: 4rem 5%;
+  font-size: 0.9rem;
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  text-align: left;
+  margin-bottom: 2rem;
+}
+
+.footer h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--secondary-color);
+}
+
+.footer-logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section a {
+  color: var(--text-color-light);
+  transition: color 0.3s ease;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.footer-section a:hover {
+  color: var(--secondary-color);
+}
+
+.social-icons {
+  display: flex;
+  gap: 1rem;
+}
+
+.social-icons a {
+  width: 35px;
+  height: 35px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-color-light);
+  transition: background-color 0.3s ease;
+}
+
+.social-icons a:hover {
+  background-color: var(--secondary-color);
+}
+
+.footer-bottom {
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 2rem;
+}
+
+/* Optional: Add a font-awesome link to use social icons in your HTML file */
+/* <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> */
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero-content {
+    padding: 2rem;
+  }
+}
+
+/* --- 화면 너비 768px 이하 (태블릿 및 모바일) --- */
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 2.2rem;
+  }
+  .logo {
+    font-size: 1.2rem;
+  }
+  .why-choose-us h2 {
+    font-size: 2rem;
+  }
+  .location-content h2 {
+    font-size: 2rem;
+  }
+}
+
+/* --- 화면 너비 480px 이하 (모바일) --- */
+@media (max-width: 480px) {
+  .hero-content h1 {
+    font-size: 1.8rem;
+  }
+  .logo {
+    font-size: 1rem;
+  }
+  .why-choose-us h2 {
+    font-size: 1.5rem;
+  }
+  .location-content h2 {
+    font-size: 1.5rem;
+  }
+}

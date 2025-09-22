@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>로컬스테이</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header class="header">
+      <nav class="nav">
+        <a href="#" class="logo">로컬스테이</a>
+        <ul class="nav-links">
+          <li><a href="#features">우리의 가치</a></li>
+          <li><a href="#location">위치</a></li>
+          <li><a href="#properties">다른 숙소</a></li>
+          <li><a href="#contact">문의하기</a></li>
+        </ul>
+        <a href="https://form.jotform.com/252619584819471" class="book-now-btn"
+          >예약</a
+        >
+      </nav>
+      <div class="hero-section">
+        <div class="hero-content">
+          <span class="premium-badge">PREMIUM LOCAL ACCOMMODATION</span>
+          <h1>도시의 쉼표,<br />로컬의 삶을 만나다</h1>
+          <p>지역과 여행객이 함께 성장하는 로컬 분산형 호텔</p>
+          <a
+            href="https://form.jotform.com/252619584819471"
+            class="book-now-btn"
+            >지금 예약하기</a
+          >
+        </div>
+      </div>
+    </header>
+
+    <section class="why-choose-us" id="features">
+      <h2>우리가 추구하는 가치</h2>
+      <p>진정한 로컬 경험을 위해 모든 디테일을 세심하게 고려했습니다.</p>
+      <div class="features-grid">
+        <div class="feature-item">
+          <div class="icon"></div>
+          <h3>우리 동네 구석구석</h3>
+          <p>
+            모든 숙소가 한 건물에 있지 않고 동네 곳곳에 위치하여 로컬 주민처럼
+            살아보는 경험을 제공합니다.
+          </p>
+        </div>
+        <div class="feature-item">
+          <div class="icon"></div>
+          <h3>지역과 함께 성장</h3>
+          <p>
+            숙소 비품을 동네 빵집, 로컬 공예가 등 지역 소상공인 제품으로 구성하여
+            지역 경제 활성화에 기여합니다.
+          </p>
+        </div>
+        <div class="feature-item">
+          <div class="icon"></div>
+          <h3>안전 & 보안</h3>
+          <p>24/7 보안 시스템과 무인 체크인으로 안전한 숙박 경험을 보장합니다.</p>
+        </div>
+        <div class="feature-item">
+          <div class="icon"></div>
+          <h3>진정한 로컬 체험</h3>
+          <p>
+            인근 상점들과 협력하여 우리 숙소에서만 누릴 수 있는 특별한 체험
+            프로그램을 제공합니다.
+          </p>
+        </div>
+        <div class="feature-item">
+          <div class="icon"></div>
+          <h3>개개인을 위한 공간</h3>
+          <p>
+            프리미엄 집기, 안락한 가구로 여행의 피로를 풀고 오롯이 자신에게
+            집중할 수 있는 시간을 선사합니다.
+          </p>
+        </div>
+        <div class="feature-item">
+          <div class="icon"></div>
+          <h3>쾌적한 환경</h3>
+          <p>매우 빠른 와이파이, 깨끗한 침구류 등 모든 세부 사항에 주의를 기울여
+            세심하게 관리된 공간입니다.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="location-section" id="location">
+      <div class="location-content">
+        <h2>로컬의 삶을 경험하는 우리 동네</h2>
+        <p>
+          북적이는 관광지 대신 조용하고 평화로운 주거 공간에 위치하여 로컬
+          주민들의 삶에 자연스럽게 녹아들 수 있습니다.
+        </p>
+        <ul class="location-details">
+          <li>
+            <div class="icon"></div>
+            <div>
+              <h3>아는 사람만 아는 로컬 스팟</h3>
+              <p>호스트가 직접 추천하는 숨겨진 맛집, 카페, 골목길을
+                발견하는 재미를 느껴보세요.</p>
+            </div>
+          </li>
+          <li>
+            <div class="icon"></div>
+            <div>
+              <h3>함께하는 동네 커뮤니티</h3>
+              <p>
+                지역 주민들과 교류하고, 그들의 일상 속에 잠시 머무르는 특별한
+                경험을 할 수 있습니다.
+              </p>
+            </div>
+          </li>
+          <li>
+            <div class="icon"></div>
+            <div>
+              <h3>주요 관광지 접근성</h3>
+              <p>주요 대중교통을 통해 부산의 다른 인기 관광지로 손쉽게
+                이동할 수 있습니다.</p>
+            </div>
+          </li>
+        </ul>
+        <a href="#" class="view-on-map-btn">지도에서 보기</a>
+      </div>
+      </section>
+
+    <section class="our-properties" id="properties">
+      <div class="properties-header">
+        <h2>다른 지역에서 만나는 우리 숙소</h2>
+        <p>
+          로컬스테이의 철학을 담아 부산의 다른 지역에서 엄선된 특별 숙박 시설
+        </p>
+      </div>
+      <div class="properties-grid">
+        <div class="property-card">
+          <img
+            src="https://placehold.co/600x400/2c3e50/ffffff?text=Haeundae+Beach+House"
+            alt="Haeundae Beach House"
+            class="property-image"
+          />
+          <div class="property-info">
+            <h3>더 해운대 스위트</h3>
+            <p>
+              해운대 해변의 아름다운 전망을 감상할 수 있는 넓고 현대적인 거실
+            </p>
+            <a href="#" class="book-property-btn">지금 예약하기</a>
+          </div>
+        </div>
+
+        <div class="property-card">
+          <img
+            src="https://placehold.co/600x400/3498db/ffffff?text=Centum+Luxury+Apt"
+            alt="Centum Luxury Apartment"
+            class="property-image"
+          />
+          <div class="property-info">
+            <h3>센텀시티 헤븐</h3>
+            <p>
+              부산의 번화한 비즈니스 및 쇼핑 지구 중심부에 위치한 세련된 휴식처
+            </p>
+            <a href="#" class="book-property-btn">지금 예약하기</a>
+          </div>
+        </div>
+
+        <div class="property-card">
+          <img
+            src="https://placehold.co/600x400/e74c3c/ffffff?text=Gamcheon+Village+Stay"
+            alt="Gamcheon Village Stay"
+            class="property-image"
+          />
+          <div class="property-info">
+            <h3>감천마을 스테이</h3>
+            <p>
+              유명한 마을 근처에 있는 독특한 문화적 분위기를 지닌 예술적이고
+              아늑한 공간입니다.
+            </p>
+            <a href="#" class="book-property-btn">지금 예약하기</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section" id="contact">
+      <h2>진정한 로컬 여행, 지금 시작해보세요</h2>
+      <p>
+        로컬스테이와 함께 도시와 여행객, 그리고 지역 사회가 모두 행복한
+        <br />경험을 만들어 갑니다.
+      </p>
+      <a href="#" class="book-now-btn large-btn">문의하기</a>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-section footer-about">
+          <h3 class="footer-logo">로컬스테이</h3>
+          <p>
+            진정한 로컬 여행을 통해 도시와 여행객, 그리고 지역 사회가 모두 행복한 경험을
+            만들어 갑니다.
+          </p>
+        </div>
+        <div class="footer-section footer-social">
+          <h4>문의하기</h4>
+          <div class="social-icons">
+            <a href="#" aria-label="Instagram"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a href="#" aria-label="Facebook"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+        <div class="footer-section footer-contact">
+          <h4>Contact Info</h4>
+          <p>Busan, South Korea</p>
+          <p>Email: info@localstay.com</p>
+          <p>Phone: +82 51-123-4567</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 로컬스테이. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="assets/js/script.js"></script>
+  </body>
+</html>

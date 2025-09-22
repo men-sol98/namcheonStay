@@ -3,232 +3,242 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Namcheon Retreat</title>
+    <title>NAMINAMI INN - 마을 전체가 하나의 호텔</title>
     <link rel="stylesheet" href="assets/css/style.css" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap"
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
     />
   </head>
   <body>
     <header class="header">
-      <nav class="nav">
-        <a href="#" class="logo">Namcheon Retreat</a>
-        <ul class="nav-links">
-          <li><a href="#features">소개/특징</a></li>
-          <li><a href="#location">위치</a></li>
-          <li><a href="#properties">다른 숙소</a></li>
-          <li><a href="#contact">문의하기</a></li>
-        </ul>
-        <a href="https://form.jotform.com/252619584819471" class="book-now-btn"
-          >예약</a
-        >
-      </nav>
-      <div class="hero-section">
-        <div class="hero-content">
-          <span class="premium-badge">PREMIUM ACCOMMODATION</span>
-          <h1>숨겨진 부산의 모습을<br />발견해보세요</h1>
-          <p>매력적인 부산의 남천동에서 편안한 휴식</p>
-          <a
-            href="https://form.jotform.com/252619584819471"
-            class="book-now-btn"
-            >지금 예약하기</a
-          >
+      <div class="nav-container">
+        <a href="#" class="logo">NAMINAMI INN</a>
+        <nav class="nav">
+          <ul class="nav-links">
+            <li><a href="#concept">콘셉트</a></li>
+            <li><a href="#experience">이용 가이드</a></li>
+            <li><a href="#partners">파트너</a></li>
+            <li><a href="#story">마을 이야기</a></li>
+            <li><a href="#rooms">객실</a></li>
+            <li><a href="#cta">예약하기</a></li>
+          </ul>
+        </nav>
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
         </div>
       </div>
     </header>
 
-    <section class="why-choose-us" id="features">
-      <h2>왜 우리 공간을 선택해야 할까요</h2>
-      <p>부산에서의 특별한 숙박을 위해 모든 디테일을 세심하게 고려했습니다.</p>
-      <div class="features-grid">
-        <div class="feature-item">
-          <div class="icon"></div>
-          <h3>주요 위치</h3>
-          <p>
-            도보 5분 거리에 광안리 해변, 남천동 빵집 거리 등 가까운 현지의 매력
+    <main>
+      <section class="hero" id="hero">
+        <div class="hero-content">
+          <p class="hero-subtitle">마을 전체가 하나의 호텔입니다.</p>
+          <br />
+          <h1 class="hero-title">
+            부산 남구,<br />
+            숨겨진 시간을 만나는 여행
+          </h1>
+          <a href="#cta" class="hero-link">사전 예약하기</a>
+        </div>
+      </section>
+
+      <section class="section concept-section" id="concept">
+        <div class="container">
+          <h2 class="section-title">콘셉트</h2>
+          <p class="section-subtitle">
+            나미나미 여인숙의 특별한 콘셉트를 소개합니다.
           </p>
-        </div>
-        <div class="feature-item">
-          <div class="icon"></div>
-          <h3>쾌적한 인터넷 환경</h3>
-          <p>매우 빠른 와이파이로 일, 엔터테인먼트에 최적화된 환경</p>
-        </div>
-        <div class="feature-item">
-          <div class="icon"></div>
-          <h3>주차 가능</h3>
-          <p>숙소 당 1대의 주차 공간 보장</p>
-        </div>
-        <div class="feature-item">
-          <div class="icon"></div>
-          <h3>현대적인 어메니티</h3>
-          <p>모든 것을 갖춘 주방, 프리미엄 집기, 안락한 가구</p>
-        </div>
-        <div class="feature-item">
-          <div class="icon"></div>
-          <h3>안전 & 보안</h3>
-          <p>24/7 보안 시스템과 무인 체크인으로 안전한 숙박 경험</p>
-        </div>
-        <div class="feature-item">
-          <div class="icon"></div>
-          <h3>5성급 체험</h3>
-          <p>모든 세부 사항에 주의를 기울여 세심하게 관리된 공간</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="location-section" id="location">
-      <div class="location-content">
-        <h2>광안리 해변 앞 완벽한 위치</h2>
-        <p>
-          부산에서 가장 인기 있는 주거 지역 중 한 곳에 자리 잡은 저희 숙소는
-          평화로움과 접근성이 완벽하게 조화를 이룬 숙박 시설을 제공합니다.
-        </p>
-        <ul class="location-details">
-          <li>
-            <div class="icon"></div>
-            <div>
-              <h3>광안리 접근성</h3>
-              <p>도보 5분 거리에 아름다운 광안리 해변, 드론쇼</p>
+          <div class="concept-grid">
+            <div class="concept-item">
+              <i class="fas fa-utensils fa-3x mb-4 text-primary"></i>
+              <h3 class="concept-title">미식 탐험</h3>
+              <p>지역 맛집과 연계한 특별한 미식 경험을 제공합니다.</p>
             </div>
-          </li>
-          <li>
-            <div class="icon"></div>
-            <div>
-              <h3>교통 허브</h3>
-              <p>손쉽게 지하철과 버스로 접근할 수 있는 연결성</p>
+            <div class="concept-item">
+              <i class="fas fa-seedling fa-3x mb-4 text-primary"></i>
+              <h3 class="concept-title">자연 속 휴식</h3>
+              <p>도심 속 자연을 만끽하며 힐링하는 공간입니다.</p>
             </div>
-          </li>
-          <li>
-            <div class="icon"></div>
-            <div>
-              <h3>관광지 연계성</h3>
-              <p>부산의 주요 관광지인 해운대와 광안리, 영도까지 모두 20분</p>
+            <div class="concept-item">
+              <i class="fas fa-paint-brush fa-3x mb-4 text-primary"></i>
+              <h3 class="concept-title">예술과의 만남</h3>
+              <p>지역 예술가들의 작품을 감상하며 영감을 얻으세요.</p>
             </div>
-          </li>
-        </ul>
-        <a href="#" class="view-on-map-btn">지도에서 보기</a>
-      </div>
-      <!-- <div class="interactive-map">
-        <h3>주변 지도</h3>
-        <p>숙소 주변 관광지들을 둘러보세요</p>
-      </div> -->
-    </section>
-
-    <!-- Our Properties Section -->
-    <section class="our-properties" id="properties">
-      <div class="properties-header">
-        <h2>부산에 있는 우리의 다른 숙소</h2>
-        <p>완벽한 부산 여행을 위한 엄선된 특별 숙박 시설</p>
-      </div>
-      <div class="properties-grid">
-        <!-- Property Card 1 -->
-        <div class="property-card">
-          <img
-            src="https://placehold.co/600x400/2c3e50/ffffff?text=Haeundae+Beach+House"
-            alt="Haeundae Beach House"
-            class="property-image"
-          />
-          <div class="property-info">
-            <h3>더 해운대 스위트</h3>
-            <p>
-              해운대 해변의 아름다운 전망을 감상할 수 있는 넓고 현대적인 거실
-            </p>
-            <a href="#" class="book-property-btn">지금 예약하기</a>
           </div>
         </div>
+      </section>
 
-        <!-- Property Card 2 -->
-        <div class="property-card">
-          <img
-            src="https://placehold.co/600x400/3498db/ffffff?text=Centum+Luxury+Apt"
-            alt="Centum Luxury Apartment"
-            class="property-image"
-          />
-          <div class="property-info">
-            <h3>센텀시티 헤븐</h3>
-            <p>
-              부산의 번화한 비즈니스 및 쇼핑 지구 중심부에 위치한 세련된 휴식처
-            </p>
-            <a href="#" class="book-property-btn">지금 예약하기</a>
+      <section class="section experience-section" id="experience">
+        <div class="container">
+          <h2 class="section-title">이용 가이드</h2>
+          <p class="section-subtitle">
+            간단한 절차로 나미나미 여인숙을 경험하세요.
+          </p>
+          <div class="image-text-container reverse-row">
+            <div class="text-content">
+              <h3>STEP 1. 예약하기</h3>
+              <p>
+                나미나미 홈페이지에서 원하는 날짜와 객실을 선택하여 간편하게
+                예약하세요.
+              </p>
+            </div>
+            <div class="image-content">
+              <img
+                src="./assets/images/bookingSystem.png"
+                alt="예약 시스템 이미지"
+              />
+            </div>
+          </div>
+          <div class="image-text-container">
+            <div class="text-content">
+              <h3>STEP 2. 체크인</h3>
+              <p>
+                체크인 시 리셉션에서 키와 함께 주변 관광지 정보를 얻을 수
+                있습니다.
+              </p>
+            </div>
+            <div class="image-content">
+              <img
+                src="./assets/images/checkIn.jpg"
+                alt="체크인 데스크 이미지"
+              />
+            </div>
+          </div>
+          <div class="image-text-container reverse-row">
+            <div class="text-content">
+              <h3>STEP 3. 마을 탐험</h3>
+              <p>
+                제공된 지도를 따라 나미나미 마을의 숨겨진 보물을 발견하세요.
+              </p>
+            </div>
+            <div class="image-content">
+              <img
+                src="./assets/images/villageExploration.jpg"
+                alt="마을 탐험 이미지"
+              />
+            </div>
           </div>
         </div>
+      </section>
 
-        <!-- Property Card 3 -->
-        <div class="property-card">
-          <img
-            src="https://placehold.co/600x400/e74c3c/ffffff?text=Gamcheon+Village+Stay"
-            alt="Gamcheon Village Stay"
-            class="property-image"
-          />
-          <div class="property-info">
-            <h3>감천마을 스테이</h3>
-            <p>
-              유명한 마을 근처에 있는 독특한 문화적 분위기를 지닌 예술적이고
-              아늑한 공간입니다.
-            </p>
-            <a href="#" class="book-property-btn">지금 예약하기</a>
+      <section id="partners" class="section partners-section">
+        <div class="container">
+          <h2 class="section-title">우리의 소중한 파트너들</h2>
+          <p class="section-subtitle">
+            로컬리티를 함께 만들어가는 지역 상점들입니다.
+          </p>
+          <div class="partners-grid">
+            <div class="partner-card">
+              <img src="./assets/images/halmae.png" alt="할매팥빙수" />
+              <p class="partner-name">할매팥빙수</p>
+            </div>
+            <div class="partner-card">
+              <img src="./assets/images/cafe.png" alt="일기장카페" />
+              <p class="partner-name">일기장카페</p>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="cta-section" id="contact">
-      <h2>부산으로 떠날 준비가 되셨나요?</h2>
-      <p>
-        지금 바로 숙박을 예약하고 아름다운 남천동에서 편안함, 스타일,
-        <br />그리고 위치의 완벽한 조화를 경험해 보세요.
-      </p>
-      <a href="#" class="book-now-btn large-btn">문의하기</a>
-    </section>
+      <section class="section story-section" id="story">
+        <div class="container">
+          <h2 class="section-title">마을 이야기</h2>
+          <p class="section-subtitle">
+            나미나미 여인숙이 탄생한 특별한 이야기를 소개합니다.
+          </p>
+          <div class="story-content">
+            <p>
+              오래된 여인숙에서 시작된 나미나미는 마을 전체를 아우르는 복합 문화
+              공간으로 재탄생했습니다.<br />모든 객실은 마을 곳곳에 흩어져
+              있으며, 각기 다른 테마로 꾸며져 있습니다.
+            </p>
+            <div class="story-image">
+              <img
+                src="./assets/images/villageView.jpg"
+                alt="아름다운 마을 전경 이미지"
+              />
+            </div>
+            <p>
+              우리는 단순한 숙박을 넘어, 이웃과 소통하고 지역의 역사와 문화를
+              경험하는 '마을살이'를 제공하고자 합니다. <br />나미나미는 당신에게
+              잊을 수 없는 추억을 선물할 것입니다.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section rooms-section" id="rooms">
+        <div class="container">
+          <h2 class="section-title">객실</h2>
+          <p class="section-subtitle">
+            나미나미 여인숙의 다양한 객실들을 만나보세요.
+          </p>
+          <div class="rooms-grid">
+            <div class="room-card">
+              <img
+                src="./assets/images/hero_content_bg.png"
+                alt="객실 1 이미지"
+              />
+              <div class="room-info">
+                <h3>바다 전망 객실</h3>
+                <p>시원한 바다를 한눈에 담을 수 있는 객실입니다.</p>
+              </div>
+            </div>
+            <div class="room-card">
+              <img src="./assets/images/room2.jpg" alt="객실 2 이미지" />
+              <div class="room-info">
+                <h3>정원 전망 객실</h3>
+                <p>아름다운 정원이 보이는 아늑한 객실입니다.</p>
+              </div>
+            </div>
+            <div class="room-card">
+              <img src="./assets/images/room3.jpg" alt="객실 3 이미지" />
+              <div class="room-info">
+                <h3>마을 전망 객실</h3>
+                <p>소박하고 정겨운 마을 전경을 즐길 수 있는 객실입니다.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section cta-section" id="cta">
+        <div class="container">
+          <h2 class="cta-title">지금 바로 예약하세요!</h2>
+          <p class="cta-subtitle">
+            나미나미 여인숙에서 특별한 추억을 만들어보세요.
+          </p>
+          <a
+            href="https://form.jotform.com/252619584819471"
+            class="cta-btn"
+            target="_blank"
+          >
+            사전 예약 신청하기
+          </a>
+        </div>
+      </section>
+    </main>
 
     <footer class="footer">
-      <div class="footer-container">
-        <div class="footer-section footer-about">
-          <h3 class="footer-logo">Namcheon Retreat</h3>
-          <p>
-            부산에서 가장 인기 있는 지역의 중심부에서 평온함을 경험하세요.
-            <br />
-            완벽한 숙박이 당신을 기다립니다.
-          </p>
-        </div>
-        <!-- <div class="footer-section footer-links">
-          <h4>Quick Links</h4>
-          <ul>
-            <li><a href="#features">Features</a></li>
-            <li><a href="#location">Location</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li><a href="#">Privacy Policy</a></li>
-          </ul>
-        </div> -->
-        <div class="footer-section footer-social">
-          <h4>문의하기</h4>
-          <div class="social-icons">
-            <a href="#" aria-label="Instagram"
-              ><i class="fab fa-instagram"></i
-            ></a>
-            <a href="#" aria-label="Facebook"
-              ><i class="fab fa-facebook-f"></i
-            ></a>
-            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-logo">NAMINAMI INN</div>
+          <div class="footer-links">
+            <a href="#">개인정보처리방침</a> | <a href="#">이용약관</a>
           </div>
         </div>
-        <div class="footer-section footer-contact">
-          <h4>Contact Info</h4>
-          <p>Namcheon-dong, Suyeong-gu, Busan, South Korea</p>
-          <p>Email: info@namcheonretreat.com</p>
-          <p>Phone: +82 51-123-4567</p>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; 2025 Namcheon Retreat. All rights reserved.</p>
+        <p class="copyright">&copy; 2025 NAMINAMI INN. All Rights Reserved.</p>
       </div>
     </footer>
-
     <script src="assets/js/script.js"></script>
   </body>
 </html>

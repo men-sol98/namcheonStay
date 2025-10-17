@@ -788,6 +788,21 @@ body {
   padding: 2rem;
 }
 
+/* 안내 박스 */
+.info-box {
+  background-color: #f0f7ff;
+  border-left: 4px solid var(--primary-color);
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+}
+
+.info-box p {
+  margin: 0;
+  color: #555;
+  line-height: 1.6;
+}
+
 /* ==================================== */
 /* 관리자 페이지 스타일 */
 /* ==================================== */

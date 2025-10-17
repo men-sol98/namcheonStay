@@ -72,8 +72,10 @@
     <main class="reservation-container">
       <section class="section booking-section">
         <div class="container">
-          <h1 class="section-title">숙소 예약하기</h1>
-          <p class="section-subtitle">
+          <h1 class="section-title" data-i18n="reservation_title">
+            숙소 예약하기
+          </h1>
+          <p class="section-subtitle" data-i18n="reservation_subtitle">
             Say It Gil Hotel에서 특별한 여행을 시작하세요
           </p>
 
@@ -83,8 +85,8 @@
               <img id="roomHero" alt="room hero" class="room-hero-image" />
             </div>
             <div class="room-details">
-              <h2 id="roomTitle">선택된 객실</h2>
-              <p id="roomDescription">
+              <h2 id="roomTitle" data-i18n="room_selected">선택된 객실</h2>
+              <p id="roomDescription" data-i18n="room_description">
                 아름다운 전망과 편안한 시설을 갖춘 객실입니다.
               </p>
             </div>
@@ -94,39 +96,45 @@
           <div class="booking-form-container">
             <form id="reservationForm" class="booking-form">
               <div class="form-group">
-                <label for="name">이름 *</label>
+                <label for="name" data-i18n="form_name">이름 *</label>
                 <input type="text" id="name" name="name" required />
               </div>
 
               <div class="form-group">
-                <label for="email">이메일 *</label>
+                <label for="email" data-i18n="form_email">이메일 *</label>
                 <input type="email" id="email" name="email" required />
               </div>
 
               <div class="form-group">
-                <label for="phone">전화번호</label>
+                <label for="phone" data-i18n="form_phone">전화번호</label>
                 <input type="tel" id="phone" name="phone" />
               </div>
 
               <div class="form-group">
-                <label for="whatsapp">WhatsApp ID</label>
+                <label for="whatsapp" data-i18n="form_whatsapp"
+                  >WhatsApp ID</label
+                >
                 <input type="text" id="whatsapp" name="whatsapp" />
               </div>
 
               <div class="form-row">
                 <div class="form-group">
-                  <label for="checkin">체크인 날짜 *</label>
+                  <label for="checkin" data-i18n="form_checkin"
+                    >체크인 날짜 *</label
+                  >
                   <input type="date" id="checkin" name="checkin" required />
                 </div>
 
                 <div class="form-group">
-                  <label for="checkout">체크아웃 날짜 *</label>
+                  <label for="checkout" data-i18n="form_checkout"
+                    >체크아웃 날짜 *</label
+                  >
                   <input type="date" id="checkout" name="checkout" required />
                 </div>
               </div>
 
               <div class="form-group">
-                <label for="guests">인원 수 *</label>
+                <label for="guests" data-i18n="form_guests">인원 수 *</label>
                 <input
                   type="number"
                   id="guests"
@@ -137,7 +145,10 @@
                 />
               </div>
 
-              <button type="submit" class="booking-btn">예약하기</button>
+              <button type="submit" class="booking-btn" data-i18n="form_submit">
+                <i class="fas fa-calendar-check"></i>
+                예약하기
+              </button>
             </form>
 
             <div id="status" class="status-message"></div>
@@ -158,13 +169,17 @@
     <footer class="footer">
       <div class="container">
         <div class="footer-content">
-          <div class="footer-logo">Say It Gil Hotel</div>
+          <div class="footer-logo" data-i18n="footer_logo">
+            Say It Gil Hotel
+          </div>
           <div class="footer-links">
-            <a href="#">개인정보처리방침</a> |
-            <a href="#">이용약관</a>
+            <a href="#" data-i18n="footer_privacy">개인정보처리방침</a> |
+            <a href="#" data-i18n="footer_terms">이용약관</a>
           </div>
         </div>
-        <p class="copyright">© 2025 Say It Gil Hotel. All Rights Reserved.</p>
+        <p class="copyright">
+          &copy; 2025 Say It Gil Hotel. All Rights Reserved.
+        </p>
       </div>
     </footer>
 

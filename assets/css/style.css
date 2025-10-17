@@ -131,6 +131,43 @@ body {
   transform: translateY(-11px) rotate(-45deg);
 }
 
+/* 언어 전환 버튼 스타일 */
+.lang-switch {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.lang-switch button {
+  background: transparent;
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: var(--font-family-main);
+}
+
+.lang-switch button:hover {
+  background-color: var(--primary-color);
+  color: var(--bg-white);
+  transform: translateY(-1px);
+}
+
+.lang-switch button.active {
+  background-color: var(--primary-color);
+  color: var(--bg-white);
+  box-shadow: 0 2px 8px rgba(28, 49, 99, 0.3);
+}
+
+.lang-switch button.active:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(28, 49, 99, 0.4);
+}
+
 /* ==================================== */
 /* 히어로 섹션 */
 /* ==================================== */
@@ -268,6 +305,16 @@ body {
 .image-text-container.reverse-row {
   flex-direction: row-reverse;
 }
+/* 체험 섹션용 가벼운 보조 스타일 (선택) */
+.feature-list {
+  margin: 12px 0 20px;
+  padding-left: 18px;
+  display: grid;
+  gap: 8px;
+}
+.feature-list li {
+  line-height: 1.6;
+}
 
 /* 파트너 섹션 */
 .partners-section {
@@ -368,6 +415,7 @@ body {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
   background-color: var(--bg-white);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-decoration: none;
 }
 
 .room-card:hover {
@@ -468,6 +516,574 @@ body {
 }
 
 /* ==================================== */
+/* 예약 페이지 스타일 */
+/* ==================================== */
+
+.reservation-container {
+  padding-top: 100px;
+}
+
+.booking-section {
+  background-color: var(--bg-light);
+}
+
+.room-info-card {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  background-color: var(--bg-white);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.room-gallery {
+  flex: 1;
+  max-width: 400px;
+}
+
+.room-hero-image {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.room-details {
+  flex: 1;
+  padding: 1rem 0;
+}
+
+.room-details h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.room-details p {
+  font-size: 1.1rem;
+  color: #666;
+  line-height: 1.6;
+}
+
+.booking-form-container {
+  background-color: var(--bg-white);
+  border-radius: 16px;
+  padding: 2.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.booking-form {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.form-group input {
+  padding: 0.8rem 1rem;
+  border: 2px solid #e1e5e9;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  font-family: var(--font-family-main);
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(28, 49, 99, 0.1);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.booking-btn {
+  background-color: var(--primary-color);
+  color: var(--bg-white);
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.booking-btn:hover {
+  background-color: var(--secondary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(28, 49, 99, 0.3);
+}
+
+.booking-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.status-message {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 8px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.status-message.success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.status-message.error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+/* 내 예약 내역 섹션 */
+.my-bookings-section {
+  background-color: var(--bg-white);
+}
+
+.email-search-container {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.email-search-container input {
+  flex: 1;
+  padding: 0.8rem 1rem;
+  border: 2px solid #e1e5e9;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.email-search-container input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.search-btn {
+  background-color: var(--primary-color);
+  color: var(--bg-white);
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.search-btn:hover {
+  background-color: var(--secondary-color);
+  transform: translateY(-1px);
+}
+
+.reservation-list {
+  display: grid;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.reservation-card {
+  background-color: var(--bg-light);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.reservation-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.reservation-info h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+.reservation-info p {
+  margin: 0.25rem 0;
+  color: #666;
+}
+
+.reservation-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn-edit,
+.btn-cancel {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.btn-edit {
+  background-color: #28a745;
+  color: white;
+}
+
+.btn-edit:hover {
+  background-color: #218838;
+}
+
+.btn-cancel {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btn-cancel:hover {
+  background-color: #c82333;
+}
+
+.no-reservations {
+  text-align: center;
+  color: #666;
+  font-style: italic;
+  padding: 2rem;
+}
+
+/* ==================================== */
+/* 관리자 페이지 스타일 */
+/* ==================================== */
+
+.admin-container {
+  padding-top: 100px;
+}
+
+.login-section {
+  background-color: var(--bg-light);
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+}
+
+.login-form-container {
+  max-width: 400px;
+  margin: 0 auto;
+  background-color: var(--bg-white);
+  border-radius: 16px;
+  padding: 2.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.login-form {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.login-form .form-group label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+.login-btn {
+  background-color: var(--primary-color);
+  color: var(--bg-white);
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.login-btn:hover {
+  background-color: var(--secondary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(28, 49, 99, 0.3);
+}
+
+.login-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.admin-panel-section {
+  background-color: var(--bg-white);
+}
+
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.logout-btn {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logout-btn:hover {
+  background-color: #c82333;
+  transform: translateY(-1px);
+}
+
+.admin-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.stat-card {
+  background-color: var(--bg-light);
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.stat-icon {
+  width: 60px;
+  height: 60px;
+  background-color: var(--primary-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.5rem;
+}
+
+.stat-info h3 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 0.25rem;
+}
+
+.stat-info p {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.admin-table-container {
+  background-color: var(--bg-light);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.table-header h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.table-controls {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.search-input {
+  padding: 0.6rem 1rem;
+  border: 2px solid #e1e5e9;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  transition: border-color 0.3s ease;
+  min-width: 200px;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.refresh-btn {
+  background-color: var(--primary-color);
+  color: var(--bg-white);
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.refresh-btn:hover {
+  background-color: var(--secondary-color);
+  transform: translateY(-1px);
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--bg-white);
+  min-width: 800px;
+}
+
+.admin-table th {
+  background-color: var(--primary-color);
+  color: var(--bg-white);
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.admin-table td {
+  padding: 1rem;
+  border-bottom: 1px solid #e1e5e9;
+  font-size: 0.9rem;
+}
+
+.admin-table tr:hover {
+  background-color: #f8f9fa;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn-edit,
+.btn-delete {
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+}
+
+.btn-edit {
+  background-color: #28a745;
+  color: white;
+}
+
+.btn-edit:hover {
+  background-color: #218838;
+}
+
+.btn-delete {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btn-delete:hover {
+  background-color: #c82333;
+}
+
+.no-data {
+  text-align: center;
+  color: #666;
+  font-style: italic;
+  padding: 2rem;
+}
+
+.no-data i {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ==================================== */
 /* 모바일 반응형 디자인 시작 */
 /* ==================================== */
 @media (max-width: 767px) {
@@ -508,6 +1124,43 @@ body {
 
   .hamburger {
     display: flex;
+  }
+
+  /* 모바일에서 언어 전환 버튼 스타일 */
+  .lang-switch {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    z-index: 1001;
+    flex-direction: column;
+    gap: 0.25rem;
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 0.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(28, 49, 99, 0.1);
+  }
+
+  .lang-switch button {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.7rem;
+    border-radius: 8px;
+    min-width: 60px;
+    font-weight: 500;
+  }
+
+  /* 언어 전환 버튼이 활성화된 상태일 때 더 명확하게 표시 */
+  .lang-switch button.active {
+    background-color: var(--primary-color);
+    color: var(--bg-white);
+    box-shadow: 0 2px 8px rgba(28, 49, 99, 0.3);
+    transform: scale(1.05);
+  }
+
+  /* 햄버거 메뉴와의 충돌 방지 */
+  .hamburger {
+    margin-right: 80px; /* 언어 버튼 공간 확보 */
   }
 
   .hero-title {
@@ -555,5 +1208,172 @@ body {
   .footer-content {
     flex-direction: column;
     gap: 1rem;
+  }
+
+  /* 예약 페이지 모바일 스타일 */
+  .room-info-card {
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
+
+  .room-gallery {
+    max-width: 100%;
+  }
+
+  .room-hero-image {
+    height: 250px;
+  }
+
+  .room-details h2 {
+    font-size: 1.5rem;
+  }
+
+  .booking-form-container {
+    padding: 1.5rem;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .email-search-container {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .reservation-card {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
+  }
+
+  .reservation-actions {
+    justify-content: center;
+  }
+
+  .btn-edit,
+  .btn-cancel {
+    flex: 1;
+    justify-content: center;
+  }
+
+  /* 관리자 페이지 모바일 스타일 */
+  .login-form-container {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+
+  .admin-header {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .admin-stats {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .stat-card {
+    padding: 1rem;
+  }
+
+  .stat-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 1.2rem;
+  }
+
+  .stat-info h3 {
+    font-size: 1.5rem;
+  }
+
+  .admin-table-container {
+    padding: 1rem;
+  }
+
+  .table-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+
+  .table-controls {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .search-input {
+    min-width: auto;
+    width: 100%;
+  }
+
+  .admin-table {
+    min-width: 600px;
+  }
+
+  .admin-table th,
+  .admin-table td {
+    padding: 0.5rem;
+    font-size: 0.8rem;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .btn-edit,
+  .btn-delete {
+    width: 28px;
+    height: 28px;
+    font-size: 0.7rem;
+  }
+}
+
+/* 태블릿 크기에서의 언어 전환 버튼 조정 */
+@media (max-width: 1024px) and (min-width: 768px) {
+  .lang-switch {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1001;
+    flex-direction: row;
+    gap: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 0.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+  }
+
+  .lang-switch button {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+    border-radius: 8px;
+    min-width: 50px;
+  }
+}
+
+/* 매우 작은 모바일 화면 (480px 이하) */
+@media (max-width: 480px) {
+  .lang-switch {
+    bottom: 0.5rem;
+    right: 0.5rem;
+    padding: 0.4rem;
+    gap: 0.2rem;
+  }
+
+  .lang-switch button {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.65rem;
+    min-width: 50px;
+  }
+
+  /* 햄버거 메뉴와의 충돌 방지 */
+  .hamburger {
+    margin-right: 70px;
   }
 }

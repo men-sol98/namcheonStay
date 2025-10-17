@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>사잇길 숙소 예약 - Say It Gil Hotel</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+
+    <!-- flatpickr 스타일/스크립트 (달력) -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ko.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/rangePlugin.js"></script>
+
+    <!-- 다국어 지원 스크립트 -->
+    <script src="assets/js/i18n.js"></script>
+    <script src="assets/js/script.js"></script>
+  </head>
+  <body>
+    <header class="header">
+      <div class="nav-container">
+        <a href="index.html" class="logo" data-i18n="logo">사잇길(SayItGil)</a>
+
+        <nav class="nav">
+          <ul class="nav-links">
+            <li>
+              <a href="index.html#concept" data-i18n="nav_concept">가치</a>
+            </li>
+            <li>
+              <a href="index.html#story" data-i18n="nav_story">마을 이야기</a>
+            </li>
+            <li>
+              <a href="index.html#experience" data-i18n="nav_usage"
+                >이용 가이드</a
+              >
+            </li>
+            <li>
+              <a href="index.html#exp-program" data-i18n="nav_experience"
+                >체험 프로그램</a
+              >
+            </li>
+            <li><a href="index.html#rooms" data-i18n="nav_rooms">객실</a></li>
+          </ul>
+        </nav>
+
+        <!-- 언어 전환 버튼 -->
+        <div class="lang-switch">
+          <button onclick="changeLanguage('ko')">한국어</button>
+          <button onclick="changeLanguage('en')">English</button>
+          <button onclick="changeLanguage('jp')">日本語</button>
+          <button onclick="changeLanguage('tw')">繁體中文</button>
+        </div>
+
+        <div class="hamburger"><span></span><span></span><span></span></div>
+      </div>
+    </header>
+
+    <main class="reservation-container">
+      <section class="section booking-section">
+        <div class="container">
+          <h1 class="section-title">숙소 예약하기</h1>
+          <p class="section-subtitle">
+            Say It Gil Hotel에서 특별한 여행을 시작하세요
+          </p>
+
+          <!-- 방 정보 -->
+          <div class="room-info-card">
+            <div class="room-gallery">
+              <img id="roomHero" alt="room hero" class="room-hero-image" />
+            </div>
+            <div class="room-details">
+              <h2 id="roomTitle">선택된 객실</h2>
+              <p id="roomDescription">
+                아름다운 전망과 편안한 시설을 갖춘 객실입니다.
+              </p>
+            </div>
+          </div>
+
+          <!-- 예약 폼 -->
+          <div class="booking-form-container">
+            <form id="reservationForm" class="booking-form">
+              <div class="form-group">
+                <label for="name">이름 *</label>
+                <input type="text" id="name" name="name" required />
+              </div>
+
+              <div class="form-group">
+                <label for="email">이메일 *</label>
+                <input type="email" id="email" name="email" required />
+              </div>
+
+              <div class="form-group">
+                <label for="phone">전화번호</label>
+                <input type="tel" id="phone" name="phone" />
+              </div>
+
+              <div class="form-group">
+                <label for="whatsapp">WhatsApp ID</label>
+                <input type="text" id="whatsapp" name="whatsapp" />
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="checkin">체크인 날짜 *</label>
+                  <input type="date" id="checkin" name="checkin" required />
+                </div>
+
+                <div class="form-group">
+                  <label for="checkout">체크아웃 날짜 *</label>
+                  <input type="date" id="checkout" name="checkout" required />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="guests">인원 수 *</label>
+                <input
+                  type="number"
+                  id="guests"
+                  name="guests"
+                  min="1"
+                  max="6"
+                  required
+                />
+              </div>
+
+              <button type="submit" class="booking-btn">예약하기</button>
+            </form>
+
+            <div id="status" class="status-message"></div>
+
+            <!-- 안내 박스: 조회/수정/취소는 이메일로 -->
+            <div class="info-box" style="margin-top: 16px">
+              <p>
+                ✅ 예약 접수 후 확인 메일을 발송해 드립니다. <br />
+                예약 내용 조회/변경/취소가 필요하시면, 접수된 이메일로 회신해
+                주세요.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-logo">Say It Gil Hotel</div>
+          <div class="footer-links">
+            <a href="#">개인정보처리방침</a> |
+            <a href="#">이용약관</a>
+          </div>
+        </div>
+        <p class="copyright">© 2025 Say It Gil Hotel. All Rights Reserved.</p>
+      </div>
+    </footer>
+
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+      import {
+        getFirestore,
+        collection,
+        addDoc,
+        query,
+        getDocs,
+        where,
+      } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
+
+      // 헤더 높이만큼 본문 여백
+      const headerEl = document.querySelector(".header");
+      const contentEl = document.querySelector(".reservation-container");
+      if (headerEl && contentEl)
+        contentEl.style.paddingTop = headerEl.offsetHeight + 20 + "px";
+
+      // Firebase
+      const firebaseConfig = {
+        apiKey: "AIzaSyBcxmh2FQ8-1J8yk816XZJyiEAn-_z1Ufc",
+        authDomain: "sayitgil-reservation.firebaseapp.com",
+        projectId: "sayitgil-reservation",
+        storageBucket: "sayitgil-reservation.appspot.com",
+        messagingSenderId: "156182422109",
+        appId: "1:156182422109:web:71e9b0948331f1755123b4",
+      };
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+
+      // 방 파라미터
+      const params = new URLSearchParams(location.search);
+      const roomId = params.get("room") || "room1";
+      const roomTitle = params.get("title") || "숙소 예약하기";
+
+      // UI 요소
+      const roomTitleEl = document.getElementById("roomTitle");
+      const roomDescriptionEl = document.getElementById("roomDescription");
+      const hero = document.getElementById("roomHero");
+      const form = document.getElementById("reservationForm");
+      const statusText = document.getElementById("status");
+      const checkinEl = document.getElementById("checkin");
+      const checkoutEl = document.getElementById("checkout");
+      const submitBtn = form.querySelector('button[type="submit"]');
+
+      // 방 정보
+      roomTitleEl.textContent = roomTitle;
+      hero.src = `./assets/images/rooms/${roomId}-1.png`;
+      hero.onerror = () => (hero.style.display = "none");
+      const roomDescriptions = {
+        room1: "시원한 바다를 한눈에 담을 수 있는 객실입니다.",
+        room2: "아름다운 정원이 보이는 아늑한 객실입니다.",
+        room3: "소박하고 정겨운 마을 전경을 즐길 수 있는 객실입니다.",
+        experience: "막걸리·동래파전 체험 프로그램 예약입니다.",
+      };
+      roomDescriptionEl.textContent =
+        roomDescriptions[roomId] || roomDescriptions.experience;
+
+      // 날짜 유틸
+      const pad = (n) => String(n).padStart(2, "0");
+      const toLocalDate = (y, m, d) => `${y}-${pad(m)}-${pad(d)}`;
+      const toDateLocal = (iso) => {
+        const [y, m, d] = iso.split("-").map(Number);
+        return new Date(y, m - 1, d);
+      };
+      const dayBeforeLocal = (iso) => {
+        const dt = toDateLocal(iso);
+        dt.setDate(dt.getDate() - 1);
+        return toLocalDate(dt.getFullYear(), dt.getMonth() + 1, dt.getDate());
+      };
+      const isOverlap = (aStart, aEnd, bStart, bEnd) =>
+        aStart < bEnd && bStart < aEnd;
+
+      // 기존 예약 로드 → 겹치는 날짜 비활성화
+      let bookedRanges = [];
+      await loadBookedRanges();
+
+      async function loadBookedRanges() {
+        bookedRanges = [];
+        try {
+          const q = query(
+            collection(db, "reservations"),
+            where("roomId", "==", roomId)
+          );
+          const snap = await getDocs(q);
+          snap.forEach((docSnap) => {
+            const d = docSnap.data();
+            if (d.checkin && d.checkout)
+              bookedRanges.push({ start: d.checkin, end: d.checkout });
+          });
+        } catch (e) {
+          console.error("예약 구간 로드 오류:", e);
+          // 조용히 오류 처리 (사용자에게 불필요한 알림 방지)
+        }
+      }
+
+      // flatpickr 초기화 (checkin만)
+      if (!window.flatpickr) console.error("flatpickr 로드 순서를 확인하세요.");
+      flatpickr.localize(flatpickr.l10ns.ko);
+      const disabled = bookedRanges.map((r) => ({
+        from: r.start,
+        to: dayBeforeLocal(r.end),
+      }));
+
+      const ciFp = flatpickr(checkinEl, {
+        dateFormat: "Y-m-d",
+        minDate: "today",
+        disable: disabled,
+        plugins: [new rangePlugin({ input: "#checkout" })],
+        onChange: () => validateNoOverlap(),
+      });
+
+      function validateNoOverlap() {
+        statusText.textContent = "";
+        submitBtn.disabled = false;
+        const ci = checkinEl.value,
+          co = checkoutEl.value;
+        if (!ci || !co) return true;
+
+        const aStart = toDateLocal(ci),
+          aEnd = toDateLocal(co);
+        if (aEnd <= aStart) {
+          statusText.textContent =
+            "체크아웃 날짜가 체크인보다 같거나 빠릅니다.";
+          submitBtn.disabled = true;
+          return false;
+        }
+        for (const r of bookedRanges) {
+          const bStart = toDateLocal(r.start),
+            bEnd = toDateLocal(r.end);
+          if (isOverlap(aStart, aEnd, bStart, bEnd)) {
+            statusText.textContent = `해당 기간은 이미 예약되어 있습니다. (${r.start} ~ ${r.end} 전까지)`;
+            submitBtn.disabled = true;
+            return false;
+          }
+        }
+        return true;
+      }
+
+      // 제출 (조회/수정 UI 없음)
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        if (!validateNoOverlap()) return;
+
+        const data = {
+          roomId,
+          roomTitle,
+          name: form.name.value,
+          email: form.email.value,
+          emailLower: form.email.value.toLowerCase(),
+          phone: form.phone.value || "",
+          whatsapp: form.whatsapp.value || "",
+          checkin: checkinEl.value,
+          checkout: checkoutEl.value,
+          guests: Number(form.guests.value),
+          createdAt: new Date().toISOString(),
+        };
+
+        try {
+          await addDoc(collection(db, "reservations"), data);
+          statusText.textContent =
+            "예약이 접수되었습니다 🎉 확인 메일을 곧 보내드릴게요.";
+          statusText.className = "status-message success";
+          form.reset();
+
+          // 방금 예약한 구간 즉시 비활성화 반영
+          bookedRanges.push({ start: data.checkin, end: data.checkout });
+          ciFp.set("disable", [
+            ...ciFp.config.disable,
+            { from: data.checkin, to: dayBeforeLocal(data.checkout) },
+          ]);
+        } catch (err) {
+          console.error("예약 오류:", err);
+          statusText.textContent = "예약 중 오류가 발생했습니다 😢";
+          statusText.className = "status-message error";
+        }
+      });
+    </script>
+  </body>
+</html>

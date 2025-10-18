@@ -73,6 +73,15 @@ async function changeLanguage(lang) {
       }
     });
 
+    // placeholder 번역 처리
+    document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
+      const pKey = el.getAttribute("data-i18n-placeholder");
+      const t = langData[pKey];
+      if (t) {
+        el.setAttribute("placeholder", t);
+      }
+    });
+
     // 현재 언어 업데이트
     currentLanguage = lang;
 

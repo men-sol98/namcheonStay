@@ -62,6 +62,8 @@
   "form_checkout": "チェックアウト日",
   "form_guests": "宿泊人数",
   "form_submit": "予約する",
+  "optional_tag": "任意",
+  "date_placeholder": "YYYY-MM-DD",
   "my_bookings_title": "予約履歴",
   "my_bookings_subtitle": "メールアドレスを入力して予約履歴を確認してください",
   "email_search_placeholder": "メールアドレスを入力してください",

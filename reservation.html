@@ -71,7 +71,7 @@
 
     <main class="reservation-container">
       <section class="section booking-section">
-        <div class="container">
+        <div class="container booking-grid">
           <h1 class="section-title" data-i18n="reservation_title">
             숙소 예약하기
           </h1>
@@ -96,17 +96,22 @@
           <div class="booking-form-container">
             <form id="reservationForm" class="booking-form">
               <div class="form-group">
-                <label for="name" data-i18n="form_name">이름 *</label>
+                <label for="name" class="required" data-i18n="form_name"
+                  >이름</label
+                >
                 <input type="text" id="name" name="name" required />
               </div>
 
               <div class="form-group">
-                <label for="email" data-i18n="form_email">이메일 *</label>
+                <label for="email" class="required" data-i18n="form_email"
+                  >이메일</label
+                >
                 <input type="email" id="email" name="email" required />
               </div>
 
               <div class="form-group">
-                <label for="phone" data-i18n="form_phone">전화번호</label>
+                <label for="phone" data-i18n="form_phone">전화번호</label
+                ><span class="optional-tag" data-i18n="optional_tag">선택</span>
                 <input type="tel" id="phone" name="phone" />
               </div>
 
@@ -119,22 +124,41 @@
 
               <div class="form-row">
                 <div class="form-group">
-                  <label for="checkin" data-i18n="form_checkin"
-                    >체크인 날짜 *</label
+                  <label for="checkin" class="required" data-i18n="form_checkin"
+                    >체크인 날짜</label
                   >
-                  <input type="date" id="checkin" name="checkin" required />
+                  <input
+                    type="date"
+                    id="checkin"
+                    name="checkin"
+                    required
+                    data-i18n-placeholder="date_placeholder"
+                    placeholder="연도-월-일"
+                  />
                 </div>
 
                 <div class="form-group">
-                  <label for="checkout" data-i18n="form_checkout"
-                    >체크아웃 날짜 *</label
+                  <label
+                    for="checkout"
+                    class="required"
+                    data-i18n="form_checkout"
+                    >체크아웃 날짜</label
                   >
-                  <input type="date" id="checkout" name="checkout" required />
+                  <input
+                    type="date"
+                    id="checkout"
+                    name="checkout"
+                    required
+                    data-i18n-placeholder="date_placeholder"
+                    placeholder="연도-월-일"
+                  />
                 </div>
               </div>
 
               <div class="form-group">
-                <label for="guests" data-i18n="form_guests">인원 수 *</label>
+                <label for="guests" class="required" data-i18n="form_guests"
+                  >인원 수</label
+                >
                 <input
                   type="number"
                   id="guests"

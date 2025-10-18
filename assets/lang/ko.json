@@ -62,6 +62,8 @@
   "form_checkout": "체크아웃 날짜",
   "form_guests": "인원 수",
   "form_submit": "예약하기",
+  "optional_tag": "선택",
+  "date_placeholder": "연도-월-일",
   "my_bookings_title": "내 예약 내역",
   "my_bookings_subtitle": "이메일을 입력하여 예약 내역을 확인하세요",
   "email_search_placeholder": "이메일 주소를 입력하세요",

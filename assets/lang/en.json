@@ -62,6 +62,8 @@
   "form_checkout": "Check-out Date",
   "form_guests": "Number of Guests",
   "form_submit": "Make Reservation",
+  "optional_tag": "Optional",
+  "date_placeholder": "YYYY-MM-DD",
   "my_bookings_title": "My Reservations",
   "my_bookings_subtitle": "Enter your email to check your reservation history",
   "email_search_placeholder": "Enter your email address",

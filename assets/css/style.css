@@ -91,11 +91,22 @@ body {
   color: var(--text-dark);
   text-decoration: none;
   font-weight: 500;
-  transition: color 0.3s ease;
+  transition: color 0.2s ease, border-color 0.2s ease,
+    background-color 0.2s ease;
+  border-bottom: 2px solid transparent;
+  padding-bottom: 4px;
 }
 
 .nav-links a:hover {
-  color: var(--secondary-color);
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+/* 현재 섹션 활성 링크 표시 */
+.nav-links a.active {
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+  font-weight: 700;
 }
 
 /* 햄버거 메뉴 스타일 */
@@ -416,11 +427,41 @@ body {
   background-color: var(--bg-white);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   text-decoration: none;
+  position: relative;
+  cursor: pointer;
 }
 
 .room-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* 클릭 암시 배지 */
+.room-card::after {
+  content: "\2192"; /* → 화살표 */
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  background: rgba(28, 49, 99, 0.9);
+  color: var(--bg-white);
+  border-radius: 9999px;
+  font-size: 0.9rem;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.room-card:hover::after {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.room-card:hover .room-info h3 {
+  text-decoration: underline;
 }
 
 .room-card img {
@@ -529,6 +570,7 @@ body {
 
 .room-info-card {
   display: flex;
+  flex-direction: column;
   gap: 2rem;
   margin-bottom: 3rem;
   background-color: var(--bg-white);
@@ -539,7 +581,8 @@ body {
 
 .room-gallery {
   flex: 1;
-  max-width: 400px;
+  width: 100%;
+  max-width: 100%;
 }
 
 .room-hero-image {
@@ -575,6 +618,23 @@ body {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
+/* 예약 페이지 2열 레이아웃 */
+.booking-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+@media (min-width: 992px) {
+  .booking-grid {
+    grid-template-columns: 1.1fr 0.9fr;
+  }
+  .room-info-card {
+    flex-direction: column; /* 좌측 카드 내부는 위아래 스택 유지 */
+  }
+}
+
 .booking-form {
   display: grid;
   gap: 1.5rem;
@@ -590,6 +650,21 @@ body {
   color: var(--primary-color);
   margin-bottom: 0.5rem;
   font-size: 0.95rem;
+}
+
+/* 필수 항목 별표 */
+.form-group label.required::after {
+  content: " *";
+  color: #d32f2f;
+  font-weight: 700;
+}
+
+/* 선택 표시 텍스트 스타일 */
+.form-group .optional-tag {
+  margin-left: 6px;
+  color: #888;
+  font-weight: 500;
+  font-size: 0.85rem;
 }
 
 .form-group input {

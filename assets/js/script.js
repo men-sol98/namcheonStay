@@ -31,6 +31,47 @@ document.addEventListener("DOMContentLoaded", function () {
   handleScroll();
   window.addEventListener("scroll", handleScroll);
 
+  // 스크롤 스파이: 현재 섹션에 해당하는 내비 링크 활성화
+  const sectionIds = [
+    "#concept",
+    "#experience",
+    "#exp-program",
+    "#story",
+    "#rooms",
+    "#cta",
+  ]; // 존재하는 섹션만 활성화됨
+  const sections = sectionIds
+    .map((id) => document.querySelector(id))
+    .filter(Boolean);
+  const navLinks = document.querySelectorAll(".nav-links a[href^='#']");
+
+  function updateActiveNav() {
+    const scrollPos = window.scrollY + navBarHeight + 20; // 헤더 보정 + 여유
+    let currentId = null;
+    for (const sec of sections) {
+      const top = sec.offsetTop;
+      const bottom = top + sec.offsetHeight;
+      if (scrollPos >= top && scrollPos < bottom) {
+        currentId = `#${sec.id}`;
+        break;
+      }
+    }
+    navLinks.forEach((a) => {
+      if (!currentId) {
+        a.classList.remove("active");
+        return;
+      }
+      if (a.getAttribute("href") === currentId) {
+        a.classList.add("active");
+      } else {
+        a.classList.remove("active");
+      }
+    });
+  }
+
+  updateActiveNav();
+  window.addEventListener("scroll", updateActiveNav);
+
   // 모든 링크와 버튼에 대한 이벤트 리스너를 한 번만 적용
   allLinksAndButtons.forEach((element) => {
     element.addEventListener("click", function (e) {

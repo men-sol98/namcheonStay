@@ -44,14 +44,12 @@
               <a href="index.html#story" data-i18n="nav_story">마을 이야기</a>
             </li>
             <li>
-              <a href="index.html#experience" data-i18n="nav_usage"
-                >이용 가이드</a
-              >
+              <a href="index.html#exp-program" data-i18n="nav_experience"
+                >체험 프로그램</a>
             </li>
             <li>
-              <a href="index.html#exp-program" data-i18n="nav_experience"
-                >체험 프로그램</a
-              >
+              <a href="index.html#experience" data-i18n="nav_usage"
+                >이용 가이드</a>
             </li>
             <li><a href="index.html#rooms" data-i18n="nav_rooms">객실</a></li>
           </ul>
@@ -73,116 +71,94 @@
       <section class="section booking-section">
         <div class="container booking-grid">
           <h1 class="section-title" data-i18n="reservation_title">
-            숙소 예약하기
+            체험 프로그램 예약하기
           </h1>
           <p class="section-subtitle" data-i18n="reservation_subtitle">
-            Say It Gil Hotel에서 특별한 여행을 시작하세요
+            막걸리 3종 시음과 DIY 동래파전 체험 프로그램
           </p>
 
-          <!-- 방 정보 -->
-          <div class="room-info-card">
+          <!-- 좌측: 체험 정보 -->
+          <div class="room-info-card" id="experienceInfo">
             <div class="room-gallery">
-              <img id="roomHero" alt="room hero" class="room-hero-image" />
+              <img id="experienceHero" alt="experience hero" class="room-hero-image" />
             </div>
             <div class="room-details">
-              <h2 id="roomTitle" data-i18n="room_selected">선택된 객실</h2>
-              <p id="roomDescription" data-i18n="room_description">
-                아름다운 전망과 편안한 시설을 갖춘 객실입니다.
-              </p>
+              <h2 id="experienceTitle" data-i18n="exp_title_full">막걸리&동래파전 체험 (1시간 코스)</h2>
+              <div class="highlight-list">
+                <p data-i18n="exp_highlight_1">✅ 1시간 완성: 바쁜 일정에 최적화된 고효율 코스 (체험+식사 동시 해결)</p>
+                <p data-i18n="exp_highlight_2">✅ 핵심 구성: 전문가와 함께하는 막걸리 3종 시음 및 동래파전 DIY</p>
+                <p data-i18n="exp_highlight_3">✅ 모두 환영: 비음주 고객을 위한 전통 음료 3종도 준비 완료</p>
+                <p data-i18n="exp_highlight_4">✅ 맞춤 배려: 채식주의자를 위한 해산물 제외 파전 별도 제작 가능</p>
+              </div>
+              <div class="price-box">
+                <strong data-i18n="exp_price_label">체험 가격 (1인당)</strong>
+                <span id="pricePerPersonText">40,000 KRW</span>
+              </div>
             </div>
           </div>
 
-          <!-- 예약 폼 -->
+          <!-- 우측: 예약 폼 -->
           <div class="booking-form-container">
             <form id="reservationForm" class="booking-form">
-              <div class="form-group">
-                <label for="name" class="required" data-i18n="form_name"
-                  >이름</label
-                >
-                <input type="text" id="name" name="name" required />
-              </div>
-
-              <div class="form-group">
-                <label for="email" class="required" data-i18n="form_email"
-                  >이메일</label
-                >
-                <input type="email" id="email" name="email" required />
-              </div>
-
-              <div class="form-group">
-                <label for="phone" data-i18n="form_phone">전화번호</label
-                ><span class="optional-tag" data-i18n="optional_tag">선택</span>
-                <input type="tel" id="phone" name="phone" />
-              </div>
-
-              <div class="form-group">
-                <label for="whatsapp" data-i18n="form_whatsapp"
-                  >WhatsApp ID</label
-                >
-                <input type="text" id="whatsapp" name="whatsapp" />
-              </div>
-
               <div class="form-row">
                 <div class="form-group">
-                  <label for="checkin" class="required" data-i18n="form_checkin"
-                    >체크인 날짜</label
-                  >
-                  <input
-                    type="date"
-                    id="checkin"
-                    name="checkin"
-                    required
-                    data-i18n-placeholder="date_placeholder"
-                    placeholder="연도-월-일"
-                  />
+                  <label for="experienceDate" class="required" data-i18n="form_date">체험 날짜</label>
+                  <input type="date" id="experienceDate" name="experienceDate" required data-i18n-placeholder="date_placeholder" placeholder="연도-월-일" />
                 </div>
-
                 <div class="form-group">
-                  <label
-                    for="checkout"
-                    class="required"
-                    data-i18n="form_checkout"
-                    >체크아웃 날짜</label
-                  >
-                  <input
-                    type="date"
-                    id="checkout"
-                    name="checkout"
-                    required
-                    data-i18n-placeholder="date_placeholder"
-                    placeholder="연도-월-일"
-                  />
+                  <label for="experienceTime" class="required" data-i18n="form_time">체험 시간</label>
+                  <select id="experienceTime" name="experienceTime" required>
+                    <option value="" data-i18n="time_select_placeholder">시간을 선택해주세요</option>
+                    <option value="18:00">18:00</option>
+                  </select>
                 </div>
               </div>
 
               <div class="form-group">
-                <label for="guests" class="required" data-i18n="form_guests"
-                  >인원 수</label
-                >
-                <input
-                  type="number"
-                  id="guests"
-                  name="guests"
-                  min="1"
-                  max="6"
-                  required
-                />
+                <label for="participants" class="required" data-i18n="form_participants">참가인원</label>
+                <input type="number" id="participants" name="participants" min="1" max="20" required />
               </div>
 
-              <button type="submit" class="booking-btn" data-i18n="form_submit">
-                <i class="fas fa-calendar-check"></i>
-                예약하기
-              </button>
+              <div class="form-group">
+                <label for="repName" class="required" data-i18n="form_name">이름</label>
+                <input type="text" id="repName" name="repName" required />
+              </div>
+              <div class="form-group">
+                <label for="repPhone" data-i18n="form_phone">연락처</label><span class="optional-tag" data-i18n="optional_tag">선택</span>
+                <input type="tel" id="repPhone" name="repPhone" />
+              </div>
+              <div class="form-group">
+                <label for="repEmail" class="required" data-i18n="form_email">이메일</label>
+                <input type="email" id="repEmail" name="repEmail" required />
+              </div>
+
+              <div class="form-group">
+                <label data-i18n="form_extra_requests">추가 요청 사항</label>
+                <div class="checkbox-group">
+                  <label><input type="checkbox" id="optVegetarian" /> <span data-i18n="opt_vegetarian">채식 옵션 요청</span></label>
+                  <label><input type="checkbox" id="optNonalchol" /> <span data-i18n="opt_Nonalchol">음료 변경 옵션 요청</span></label>
+                  <label><input type="checkbox" id="optPickupG" /> <span data-i18n="opt_pickup_g">픽업 서비스 요청(경성대역)</span></label>
+                  <label><input type="checkbox" id="optPickupO" /> <span data-i18n="opt_pickup_o">픽업 서비스 요청(오륙도)</span></label>
+                </div>
+              </div>
+
+              <div class="total-box">
+                <div class="total-row">
+                  <span class="total-label" data-i18n="final_amount">최종 결제 금액:</span>
+                  <strong id="totalAmountText">0 KRW</strong>
+                </div>
+                <button type="submit" class="booking-btn" id="submitBtn">
+                  <i class="fas fa-credit-card"></i>
+                  <span data-i18n="confirm_and_pay">예약하기</span>
+                </button>
+              </div>
             </form>
 
             <div id="status" class="status-message"></div>
 
-            <!-- 안내 박스: 조회/수정/취소는 이메일로 -->
             <div class="info-box" style="margin-top: 16px">
               <p>
-                ✅ 예약 접수 후 확인 메일을 발송해 드립니다. <br />
-                예약 내용 조회/변경/취소가 필요하시면, 접수된 이메일로 회신해
-                주세요.
+                ✅ <span data-i18n="info_email_notice">예약 접수 후 확인 메일을 발송해 드립니다. 예약 내용 조회/변경/취소는 회신으로 요청해 주세요.</span>
               </p>
             </div>
           </div>
@@ -236,151 +212,74 @@
       const app = initializeApp(firebaseConfig);
       const db = getFirestore(app);
 
-      // 방 파라미터
-      const params = new URLSearchParams(location.search);
-      const roomId = params.get("room") || "room1";
-      const roomTitle = params.get("title") || "숙소 예약하기";
-
-      // UI 요소
-      const roomTitleEl = document.getElementById("roomTitle");
-      const roomDescriptionEl = document.getElementById("roomDescription");
-      const hero = document.getElementById("roomHero");
+      // 가격 및 UI 요소
+      const PRICE_PER_PERSON = 40000;
       const form = document.getElementById("reservationForm");
       const statusText = document.getElementById("status");
-      const checkinEl = document.getElementById("checkin");
-      const checkoutEl = document.getElementById("checkout");
-      const submitBtn = form.querySelector('button[type="submit"]');
+      const totalAmountText = document.getElementById("totalAmountText");
+      const participantsEl = document.getElementById("participants");
+      const experienceDateEl = document.getElementById("experienceDate");
+      const submitBtn = document.getElementById("submitBtn");
+      const heroImg = document.getElementById("experienceHero");
+      const experienceTitleEl = document.getElementById("experienceTitle");
 
-      // 방 정보
-      roomTitleEl.textContent = roomTitle;
-      hero.src = `./assets/images/rooms/${roomId}-1.png`;
-      hero.onerror = () => (hero.style.display = "none");
-      const roomDescriptions = {
-        room1: "시원한 바다를 한눈에 담을 수 있는 객실입니다.",
-        room2: "아름다운 정원이 보이는 아늑한 객실입니다.",
-        room3: "소박하고 정겨운 마을 전경을 즐길 수 있는 객실입니다.",
-        experience: "막걸리·동래파전 체험 프로그램 예약입니다.",
-      };
-      roomDescriptionEl.textContent =
-        roomDescriptions[roomId] || roomDescriptions.experience;
+      // 경험 정보 세팅
+      heroImg.src = "./assets/images/experience_makgeolli.png";
+      heroImg.onerror = () => (heroImg.style.display = "none");
+      experienceTitleEl.textContent = "막걸리&동래파전 체험 (1시간 코스)";
 
-      // 날짜 유틸
-      const pad = (n) => String(n).padStart(2, "0");
-      const toLocalDate = (y, m, d) => `${y}-${pad(m)}-${pad(d)}`;
-      const toDateLocal = (iso) => {
-        const [y, m, d] = iso.split("-").map(Number);
-        return new Date(y, m - 1, d);
-      };
-      const dayBeforeLocal = (iso) => {
-        const dt = toDateLocal(iso);
-        dt.setDate(dt.getDate() - 1);
-        return toLocalDate(dt.getFullYear(), dt.getMonth() + 1, dt.getDate());
-      };
-      const isOverlap = (aStart, aEnd, bStart, bEnd) =>
-        aStart < bEnd && bStart < aEnd;
-
-      // 기존 예약 로드 → 겹치는 날짜 비활성화
-      let bookedRanges = [];
-      await loadBookedRanges();
-
-      async function loadBookedRanges() {
-        bookedRanges = [];
-        try {
-          const q = query(
-            collection(db, "reservations"),
-            where("roomId", "==", roomId)
-          );
-          const snap = await getDocs(q);
-          snap.forEach((docSnap) => {
-            const d = docSnap.data();
-            if (d.checkin && d.checkout)
-              bookedRanges.push({ start: d.checkin, end: d.checkout });
-          });
-        } catch (e) {
-          console.error("예약 구간 로드 오류:", e);
-          // 조용히 오류 처리 (사용자에게 불필요한 알림 방지)
-        }
-      }
-
-      // flatpickr 초기화 (checkin만)
+      // 날짜 선택기 (단일 날짜)
       if (!window.flatpickr) console.error("flatpickr 로드 순서를 확인하세요.");
       flatpickr.localize(flatpickr.l10ns.ko);
-      const disabled = bookedRanges.map((r) => ({
-        from: r.start,
-        to: dayBeforeLocal(r.end),
-      }));
+      flatpickr(experienceDateEl, { dateFormat: "Y-m-d", minDate: "today" });
 
-      const ciFp = flatpickr(checkinEl, {
-        dateFormat: "Y-m-d",
-        minDate: "today",
-        disable: disabled,
-        plugins: [new rangePlugin({ input: "#checkout" })],
-        onChange: () => validateNoOverlap(),
-      });
-
-      function validateNoOverlap() {
-        statusText.textContent = "";
-        submitBtn.disabled = false;
-        const ci = checkinEl.value,
-          co = checkoutEl.value;
-        if (!ci || !co) return true;
-
-        const aStart = toDateLocal(ci),
-          aEnd = toDateLocal(co);
-        if (aEnd <= aStart) {
-          statusText.textContent =
-            "체크아웃 날짜가 체크인보다 같거나 빠릅니다.";
-          submitBtn.disabled = true;
-          return false;
-        }
-        for (const r of bookedRanges) {
-          const bStart = toDateLocal(r.start),
-            bEnd = toDateLocal(r.end);
-          if (isOverlap(aStart, aEnd, bStart, bEnd)) {
-            statusText.textContent = `해당 기간은 이미 예약되어 있습니다. (${r.start} ~ ${r.end} 전까지)`;
-            submitBtn.disabled = true;
-            return false;
-          }
-        }
-        return true;
+      function formatKRW(amount) {
+        return new Intl.NumberFormat("ko-KR").format(amount) + " KRW";
       }
 
-      // 제출 (조회/수정 UI 없음)
+      function recalcTotal() {
+        const count = Number(participantsEl.value || 0);
+        const total = PRICE_PER_PERSON * Math.max(0, count);
+        totalAmountText.textContent = formatKRW(total);
+      }
+      participantsEl.addEventListener("input", recalcTotal);
+      recalcTotal();
+
+      // 제출
       form.addEventListener("submit", async (e) => {
         e.preventDefault();
-        if (!validateNoOverlap()) return;
+        submitBtn.disabled = true;
+        statusText.textContent = "";
 
         const data = {
-          roomId,
-          roomTitle,
-          name: form.name.value,
-          email: form.email.value,
-          emailLower: form.email.value.toLowerCase(),
-          phone: form.phone.value || "",
-          whatsapp: form.whatsapp.value || "",
-          checkin: checkinEl.value,
-          checkout: checkoutEl.value,
-          guests: Number(form.guests.value),
+          type: "experience",
+          experienceTitle: experienceTitleEl.textContent,
+          experienceDate: form.experienceDate.value,
+          experienceTime: form.experienceTime.value,
+          participants: Number(form.participants.value),
+          repName: form.repName.value,
+          repPhone: form.repPhone.value || "",
+          repEmail: form.repEmail.value,
+          optVegetarian: document.getElementById("optVegetarian").checked,
+          optPickupG: document.getElementById("optPickupG").checked,
+          optPickupO: document.getElementById("optPickupO").checked,
+          pricePerPerson: PRICE_PER_PERSON,
+          totalAmount: PRICE_PER_PERSON * Number(form.participants.value || 0),
           createdAt: new Date().toISOString(),
         };
 
         try {
           await addDoc(collection(db, "reservations"), data);
-          statusText.textContent =
-            "예약이 접수되었습니다 🎉 확인 메일을 곧 보내드릴게요.";
+          statusText.textContent = translations[currentLanguage]?.msg_success || "예약이 접수되었습니다.";
           statusText.className = "status-message success";
           form.reset();
-
-          // 방금 예약한 구간 즉시 비활성화 반영
-          bookedRanges.push({ start: data.checkin, end: data.checkout });
-          ciFp.set("disable", [
-            ...ciFp.config.disable,
-            { from: data.checkin, to: dayBeforeLocal(data.checkout) },
-          ]);
+          recalcTotal();
         } catch (err) {
           console.error("예약 오류:", err);
-          statusText.textContent = "예약 중 오류가 발생했습니다 😢";
+          statusText.textContent = translations[currentLanguage]?.msg_error || "예약 중 오류가 발생했습니다.";
           statusText.className = "status-message error";
+        } finally {
+          submitBtn.disabled = false;
         }
       });
     </script>

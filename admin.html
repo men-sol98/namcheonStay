@@ -15,11 +15,12 @@
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap"
       rel="stylesheet"
     />
+    <script src="assets/js/i18n.js"></script>
   </head>
   <body>
     <header class="header">
       <div class="nav-container">
-        <a href="index.html" class="logo">사잇길 관리자</a>
+        <a href="index.html" class="logo" data-i18n="admin_logo">사잇길 관리자</a>
 
         <!-- 내비게이션 -->
         <nav class="nav">
@@ -28,6 +29,14 @@
             <li><a href="reservation.html">예약 페이지</a></li>
           </ul>
         </nav>
+
+        <!-- 언어 전환 버튼 -->
+        <div class="lang-switch">
+          <button onclick="changeLanguage('ko')">한국어</button>
+          <button onclick="changeLanguage('en')">English</button>
+          <button onclick="changeLanguage('jp')">日本語</button>
+          <button onclick="changeLanguage('tw')">繁體中文</button>
+        </div>
 
         <!-- 햄버거 메뉴 -->
         <div class="hamburger">
@@ -41,17 +50,14 @@
     <main class="admin-container">
       <section class="section login-section">
         <div class="container">
-          <h1 class="section-title">관리자 로그인</h1>
-          <p class="section-subtitle">
-            Say It Gil Hotel 관리자 페이지에 접속하세요
-          </p>
+          <h1 class="section-title" data-i18n="admin_login_title">관리자 로그인</h1>
+          <p class="section-subtitle" data-i18n="admin_login_subtitle">Say It Gil Hotel 관리자 페이지에 접속하세요</p>
 
           <div class="login-form-container">
             <form id="loginForm" class="login-form">
               <div class="form-group">
-                <label for="adminEmail">
+                <label for="adminEmail" data-i18n="form_email">
                   <i class="fas fa-envelope"></i>
-                  이메일
                 </label>
                 <input
                   type="email"
@@ -63,9 +69,8 @@
               </div>
 
               <div class="form-group">
-                <label for="adminPassword">
+                <label for="adminPassword" data-i18n="form_password">
                   <i class="fas fa-lock"></i>
-                  비밀번호
                 </label>
                 <input
                   type="password"
@@ -76,7 +81,7 @@
                 />
               </div>
 
-              <button type="submit" class="login-btn">
+              <button type="submit" class="login-btn" data-i18n="login_btn">
                 <i class="fas fa-sign-in-alt"></i>
                 로그인
               </button>
@@ -88,14 +93,27 @@
       <section id="adminPanel" class="section admin-panel-section hidden">
         <div class="container">
           <div class="admin-header">
-            <h2 class="section-title">예약 관리</h2>
-            <p class="section-subtitle">
-              모든 예약 내역을 확인하고 관리할 수 있습니다
-            </p>
-            <button onclick="logout()" class="logout-btn">
-              <i class="fas fa-sign-out-alt"></i>
-              로그아웃
-            </button>
+            <div>
+              <h2 class="section-title" data-i18n="admin_dashboard_title">막걸리 체험 관리자 대시보드</h2>
+              <div class="admin-id-display">
+                관리자 ID: <span id="adminUserId">-</span>
+              </div>
+            </div>
+            <div style="display: flex; gap: 1rem; align-items: center">
+              <div class="status-filter-container">
+                <button class="status-filter-btn" onclick="toggleStatusDropdown()" data-i18n="status_filter">상태 필터</button>
+                <div class="status-dropdown" id="statusDropdown">
+                  <button class="active" onclick="filterByStatus('all')" data-i18n="filter_all">전체 보기</button>
+                  <button onclick="filterByStatus('pending')" data-i18n="filter_pending">입금/확정 대기</button>
+                  <button onclick="filterByStatus('confirmed')" data-i18n="filter_confirmed">예약 확정</button>
+                  <button onclick="filterByStatus('cancelled')" data-i18n="filter_cancelled">예약 취소</button>
+                </div>
+              </div>
+              <button onclick="logout()" class="logout-btn" data-i18n="logout_btn">
+                <i class="fas fa-sign-out-alt"></i>
+                로그아웃
+              </button>
+            </div>
           </div>
 
           <div class="admin-stats">
@@ -105,7 +123,7 @@
               </div>
               <div class="stat-info">
                 <h3 id="totalReservations">0</h3>
-                <p>총 예약 수</p>
+                <p data-i18n="stat_total_reservations">총 예약 수</p>
               </div>
             </div>
             <div class="stat-card">
@@ -114,7 +132,7 @@
               </div>
               <div class="stat-info">
                 <h3 id="totalGuests">0</h3>
-                <p>총 투숙객 수</p>
+                <p data-i18n="stat_total_guests">총 고객 수</p>
               </div>
             </div>
             <div class="stat-card">
@@ -123,14 +141,42 @@
               </div>
               <div class="stat-info">
                 <h3 id="activeReservations">0</h3>
-                <p>활성 예약</p>
+                <p data-i18n="stat_active_reservations">활성 예약</p>
               </div>
             </div>
           </div>
 
+          <!-- 체험 정원 관리 섹션 -->
           <div class="admin-table-container">
             <div class="table-header">
-              <h3>예약 목록</h3>
+              <h3 data-i18n="schedule_section_title">체험 정원 관리</h3>
+              <button onclick="openScheduleModal()" class="refresh-btn" data-i18n="schedule_add">
+                <i class="fas fa-plus"></i>
+                정원 추가
+              </button>
+            </div>
+
+            <div class="table-wrapper">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th data-i18n="th_date">날짜</th>
+                    <th data-i18n="th_time">시간</th>
+                    <th data-i18n="th_max_capacity">최대 정원</th>
+                    <th data-i18n="th_booked">예약 인원</th>
+                    <th data-i18n="th_remaining">남은 정원</th>
+                    <th data-i18n="th_actions">관리</th>
+                  </tr>
+                </thead>
+                <tbody id="scheduleTable"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- 예약 현황 섹션 -->
+          <div class="admin-table-container" style="margin-top: 2rem">
+            <div class="table-header">
+              <h3 data-i18n="reservation_status_title">예약 현황</h3>
               <div class="table-controls">
                 <input
                   type="text"
@@ -149,15 +195,12 @@
               <table class="admin-table">
                 <thead>
                   <tr>
-                    <th>예약자</th>
-                    <th>이메일</th>
-                    <th>연락처</th>
-                    <th>객실</th>
-                    <th>체크인</th>
-                    <th>체크아웃</th>
-                    <th>인원</th>
-                    <th>예약일</th>
-                    <th>관리</th>
+                    <th data-i18n="th_name">예약자명</th>
+                    <th data-i18n="th_time">시간</th>
+                    <th data-i18n="th_people_amount">인원/금액</th>
+                    <th data-i18n="th_status">상태</th>
+                    <th data-i18n="th_contact">연락처</th>
+                    <th data-i18n="th_actions">관리</th>
                   </tr>
                 </thead>
                 <tbody id="adminTable"></tbody>
@@ -167,6 +210,52 @@
         </div>
       </section>
     </main>
+
+    <!-- 정원 추가/수정 모달 -->
+    <div id="scheduleModal" class="modal hidden">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="modalTitle" data-i18n="schedule_add_title">체험 정원 추가</h3>
+          <button onclick="closeScheduleModal()" class="modal-close">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <form id="scheduleForm" class="modal-form">
+          <div class="form-group">
+            <label for="scheduleDate" class="required" data-i18n="form_date">체험 날짜</label>
+            <input type="date" id="scheduleDate" name="scheduleDate" required />
+          </div>
+          <div class="form-group">
+            <label for="scheduleTime" class="required" data-i18n="form_time">체험 시간</label>
+            <select id="scheduleTime" name="scheduleTime" required>
+              <option value="">시간을 선택하세요</option>
+              <option value="18:00">18:00</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="maxCapacity" class="required" data-i18n="th_max_capacity">최대 정원</label>
+            <input
+              type="number"
+              id="maxCapacity"
+              name="maxCapacity"
+              min="1"
+              max="50"
+              required
+            />
+          </div>
+          <div class="modal-actions">
+            <button
+              type="button"
+              onclick="closeScheduleModal()"
+              class="btn-cancel" data-i18n="cancel_btn"
+            >
+              취소
+            </button>
+            <button type="submit" class="booking-btn" data-i18n="save_btn">저장</button>
+          </div>
+        </form>
+      </div>
+    </div>
 
     <footer class="footer">
       <div class="container">
@@ -192,6 +281,9 @@
         deleteDoc,
         doc,
         updateDoc,
+        addDoc,
+        query,
+        where,
       } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
       import {
         getAuth,
@@ -223,12 +315,19 @@
       const loginForm = document.getElementById("loginForm");
       const adminPanel = document.getElementById("adminPanel");
       const tableBody = document.getElementById("adminTable");
+      const scheduleTable = document.getElementById("scheduleTable");
       const searchInput = document.getElementById("searchInput");
       const totalReservations = document.getElementById("totalReservations");
       const totalGuests = document.getElementById("totalGuests");
       const activeReservations = document.getElementById("activeReservations");
+      const adminUserId = document.getElementById("adminUserId");
+      const scheduleModal = document.getElementById("scheduleModal");
+      const scheduleForm = document.getElementById("scheduleForm");
 
       let allReservations = [];
+      let allSchedules = [];
+      let currentStatusFilter = "all";
+      let editingScheduleId = null;
 
       // 로그인 처리
       loginForm.addEventListener("submit", async (e) => {
@@ -241,15 +340,19 @@
             '<i class="fas fa-spinner fa-spin"></i> 로그인 중...';
           loginBtn.disabled = true;
 
-          await signInWithEmailAndPassword(
+          const userCredential = await signInWithEmailAndPassword(
             auth,
             loginForm.adminEmail.value,
             loginForm.adminPassword.value
           );
 
+          // 관리자 ID 표시
+          adminUserId.textContent = userCredential.user.uid;
+
           loginForm.classList.add("hidden");
           adminPanel.classList.remove("hidden");
           await loadReservations();
+          await loadSchedules();
         } catch (error) {
           alert("로그인 실패: " + error.message);
         } finally {
@@ -285,23 +388,185 @@
           });
 
           updateStats();
-          displayReservations(allReservations);
+          displayReservations(getFilteredReservations());
         } catch (error) {
           console.error("데이터 로드 오류:", error);
           alert("데이터를 불러오는 중 오류가 발생했습니다.");
         }
       }
 
-      // 통계 업데이트
-      function updateStats() {
-        const total = allReservations.length;
-        const guests = allReservations.reduce(
-          (sum, res) => sum + (res.guests || 0),
-          0
+      // 스케줄 로드
+      async function loadSchedules() {
+        try {
+          const snap = await getDocs(collection(db, "experienceSchedules"));
+          allSchedules = [];
+          snap.forEach((docSnap) => {
+            const d = docSnap.data();
+            allSchedules.push({ id: docSnap.id, ...d });
+          });
+          renderSchedules();
+        } catch (e) {
+          console.error("스케줄 로드 오류:", e);
+        }
+      }
+
+      // 스케줄 테이블 렌더링 (예약 인원/잔여석 계산 포함)
+      function renderSchedules() {
+        scheduleTable.innerHTML = "";
+        if (allSchedules.length === 0) {
+          scheduleTable.innerHTML = `
+            <tr>
+              <td colspan="6" class="no-data">등록된 스케줄이 없습니다.</td>
+            </tr>
+          `;
+          return;
+        }
+
+        // 스케줄별 예약 인원 집계
+        const countByKey = new Map();
+        for (const r of allReservations) {
+          if (r.type !== "experience") continue;
+          const key = `${r.experienceDate}__${r.experienceTime}`;
+          const val = countByKey.get(key) || 0;
+          countByKey.set(key, val + (Number(r.participants) || 0));
+        }
+
+        // 날짜/시간 순 정렬
+        const sorted = [...allSchedules].sort((a, b) => {
+          if (a.date === b.date)
+            return (a.time || "").localeCompare(b.time || "");
+          return (a.date || "").localeCompare(b.date || "");
+        });
+
+        for (const s of sorted) {
+          const key = `${s.date}__${s.time}`;
+          const booked = countByKey.get(key) || 0;
+          const remaining = Math.max(0, (Number(s.maxCapacity) || 0) - booked);
+
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
+            <td>${s.date || "-"}</td>
+            <td>${s.time || "-"}</td>
+            <td>${s.maxCapacity || 0}</td>
+            <td>${booked}</td>
+            <td>${remaining}</td>
+            <td class="action-buttons">
+              <button class="btn-edit" title="수정" onclick="openScheduleModal('${
+                s.id
+              }')">
+                <i class="fas fa-edit"></i>
+              </button>
+              <button class="btn-delete" title="삭제" onclick="deleteSchedule('${
+                s.id
+              }')">
+                <i class="fas fa-trash"></i>
+              </button>
+            </td>
+          `;
+          scheduleTable.appendChild(tr);
+        }
+      }
+
+      // 모달 열기/닫기
+      window.openScheduleModal = (id = null) => {
+        editingScheduleId = id;
+        const title = document.getElementById("modalTitle");
+        const dateEl = document.getElementById("scheduleDate");
+        const timeEl = document.getElementById("scheduleTime");
+        const capEl = document.getElementById("maxCapacity");
+
+        if (id) {
+          const found = allSchedules.find((s) => s.id === id);
+          if (found) {
+            title.textContent = "체험 정원 수정";
+            dateEl.value = found.date || "";
+            timeEl.value = found.time || "";
+            capEl.value = found.maxCapacity || 0;
+          }
+        } else {
+          title.textContent = "체험 정원 추가";
+          dateEl.value = "";
+          timeEl.value = "18:00";
+          capEl.value = "";
+        }
+        scheduleModal.classList.remove("hidden");
+      };
+
+      window.closeScheduleModal = () => {
+        scheduleModal.classList.add("hidden");
+      };
+
+      // 스케줄 저장 (추가/수정)
+      scheduleForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const date = (
+          document.getElementById("scheduleDate").value || ""
+        ).trim();
+        const time = (
+          document.getElementById("scheduleTime").value || ""
+        ).trim();
+        const maxCapacity = Number(
+          document.getElementById("maxCapacity").value || 0
         );
-        const active = allReservations.filter((res) => {
-          const today = new Date().toISOString().split("T")[0];
-          return res.checkout >= today;
+        if (!date || !time || !maxCapacity || maxCapacity <= 0) {
+          alert("모든 값을 올바르게 입력해주세요.");
+          return;
+        }
+
+        try {
+          if (editingScheduleId) {
+            await updateDoc(doc(db, "experienceSchedules", editingScheduleId), {
+              date,
+              time,
+              maxCapacity,
+            });
+          } else {
+            await addDoc(collection(db, "experienceSchedules"), {
+              date,
+              time,
+              maxCapacity,
+              createdAt: new Date().toISOString(),
+            });
+          }
+          await loadSchedules();
+          closeScheduleModal();
+        } catch (e) {
+          console.error("스케줄 저장 오류:", e);
+          alert("저장 중 오류가 발생했습니다.");
+        }
+      });
+
+      // 스케줄 삭제
+      window.deleteSchedule = async (id) => {
+        if (!confirm("정말 삭제하시겠습니까?")) return;
+        try {
+          await deleteDoc(doc(db, "experienceSchedules", id));
+          await loadSchedules();
+        } catch (e) {
+          console.error("스케줄 삭제 오류:", e);
+          alert("삭제 중 오류가 발생했습니다.");
+        }
+      };
+
+      // 통계 업데이트 (숙소/체험 예약 둘 다 대응)
+      function updateStats() {
+        // 취소되지 않은 예약만 카운트
+        const activeBookings = allReservations.filter(
+          (res) => res.status !== "cancelled"
+        );
+
+        const total = activeBookings.length;
+        const guests = activeBookings.reduce((sum, res) => {
+          const cnt =
+            res.type === "experience" ? res.participants || 0 : res.guests || 0;
+          return sum + Number(cnt || 0);
+        }, 0);
+
+        const today = new Date().toISOString().split("T")[0];
+        const active = activeBookings.filter((res) => {
+          if (res.type === "experience")
+            return (res.experienceDate || "") >= today;
+          return (res.checkout || "") >= today;
         }).length;
 
         totalReservations.textContent = total;
@@ -309,46 +574,83 @@
         activeReservations.textContent = active;
       }
 
-      // 예약 목록 표시
+      // 예약 목록 표시 (숙소/체험 공용)
       function displayReservations(reservations) {
         tableBody.innerHTML = "";
 
         if (reservations.length === 0) {
           tableBody.innerHTML = `
             <tr>
-              <td colspan="9" class="no-data">
-                <i class="fas fa-inbox"></i>
-                예약 데이터가 없습니다.
+              <td colspan="6" class="no-data">
+                현재 예약이 없습니다.
               </td>
             </tr>
           `;
           return;
         }
 
-        reservations.forEach((reservation) => {
+        reservations.forEach((rsv) => {
+          const isExp = rsv.type === "experience";
+          const name = isExp ? rsv.repName || "-" : rsv.name || "-";
+          const subTitle = isExp
+            ? rsv.experienceTitle || "체험 예약"
+            : rsv.roomTitle || "-";
+
+          let timeHtml = "-";
+          if (isExp) {
+            timeHtml = `<div>${
+              rsv.experienceDate || "-"
+            }</div><div style="font-size: 0.85rem; color: #666;">${
+              rsv.experienceTime || "-"
+            }</div>`;
+          } else {
+            timeHtml = `<div>${
+              rsv.checkin || "-"
+            }</div><div style=\"font-size: 0.85rem; color: #666;\">~ ${
+              rsv.checkout || "-"
+            }</div>`;
+          }
+
+          const people = isExp ? rsv.participants || "-" : rsv.guests || "-";
+
+          const status = rsv.status || "pending";
+          const statusText =
+            {
+              pending: "입금/확정 대기",
+              confirmed: "예약 확정",
+              cancelled: "예약 취소",
+            }[status] || "입금/확정 대기";
+
+          const email = isExp ? rsv.repEmail || "-" : rsv.email || "-";
+          const phone = isExp ? rsv.repPhone || "-" : rsv.phone || "-";
+
           const row = document.createElement("tr");
           row.innerHTML = `
-            <td>${reservation.name || "-"}</td>
-            <td>${reservation.email || "-"}</td>
-            <td>${reservation.phone || "-"}</td>
-            <td>${reservation.roomTitle || "-"}</td>
-            <td>${reservation.checkin || "-"}</td>
-            <td>${reservation.checkout || "-"}</td>
-            <td>${reservation.guests || "-"}명</td>
-            <td>${
-              reservation.createdAt
-                ? new Date(reservation.createdAt).toLocaleDateString()
-                : "-"
-            }</td>
+            <td>
+              <div><strong>${name}</strong></div>
+              <div style="font-size: 0.85rem; color: #666;">${subTitle}</div>
+            </td>
+            <td>${timeHtml}</td>
+            <td><div>${people}명</div></td>
+            <td><span class="status-badge ${status}">${statusText}</span></td>
+            <td>
+              <div>${email}</div>
+              <div style="font-size: 0.85rem; color: #666;">${phone}</div>
+              ${
+                !isExp && rsv.whatsapp
+                  ? `<div style="font-size: 0.85rem; color: #666;">WhatsApp: ${rsv.whatsapp}</div>`
+                  : ""
+              }
+            </td>
             <td class="action-buttons">
               <button class="btn-edit" onclick="editReservation('${
-                reservation.id
-              }')">
+                rsv.id
+              }')" title="예약 확정">
                 <i class="fas fa-edit"></i>
               </button>
               <button class="btn-delete" onclick="deleteReservation('${
-                reservation.id
-              }')">
+                rsv.id
+              }')" title="예약 취소">
                 <i class="fas fa-trash"></i>
               </button>
             </td>
@@ -357,17 +659,27 @@
         });
       }
 
+      // 상태 필터링 함수 (숙소/체험 공용 검색)
+      function getFilteredReservations() {
+        const searchTerm = searchInput.value.toLowerCase();
+        return allReservations.filter((r) => {
+          const statusMatch =
+            currentStatusFilter === "all" ||
+            (r.status || "pending") === currentStatusFilter;
+          const nameMatch =
+            (r.name && r.name.toLowerCase().includes(searchTerm)) ||
+            (r.repName && r.repName.toLowerCase().includes(searchTerm));
+          const emailMatch =
+            (r.email && r.email.toLowerCase().includes(searchTerm)) ||
+            (r.repEmail && r.repEmail.toLowerCase().includes(searchTerm));
+          const searchMatch = !searchTerm || nameMatch || emailMatch;
+          return statusMatch && searchMatch;
+        });
+      }
+
       // 검색 기능
       searchInput.addEventListener("input", (e) => {
-        const searchTerm = e.target.value.toLowerCase();
-        const filtered = allReservations.filter(
-          (reservation) =>
-            (reservation.name &&
-              reservation.name.toLowerCase().includes(searchTerm)) ||
-            (reservation.email &&
-              reservation.email.toLowerCase().includes(searchTerm))
-        );
-        displayReservations(filtered);
+        displayReservations(getFilteredReservations());
       });
 
       // 새로고침 기능
@@ -375,68 +687,190 @@
         await loadReservations();
       };
 
-      // 예약 수정
+      // 상태 필터 드롭다운 토글
+      window.toggleStatusDropdown = () => {
+        const dropdown = document.getElementById("statusDropdown");
+        dropdown.classList.toggle("show");
+      };
+
+      // 드롭다운 외부 클릭 시 닫기
+      document.addEventListener("click", (e) => {
+        const container = document.querySelector(".status-filter-container");
+        const dropdown = document.getElementById("statusDropdown");
+        if (container && !container.contains(e.target)) {
+          dropdown?.classList.remove("show");
+        }
+      });
+
+      // 상태 필터 선택
+      window.filterByStatus = (status) => {
+        currentStatusFilter = status;
+
+        // 드롭다운 버튼의 active 클래스 업데이트
+        const dropdown = document.getElementById("statusDropdown");
+        const buttons = dropdown.querySelectorAll("button");
+        buttons.forEach((btn) => {
+          btn.classList.remove("active");
+          if (
+            (status === "all" && btn.textContent === "전체 보기") ||
+            (status === "pending" && btn.textContent === "입금/확정 대기") ||
+            (status === "confirmed" && btn.textContent === "예약 확정") ||
+            (status === "cancelled" && btn.textContent === "예약 취소")
+          ) {
+            btn.classList.add("active");
+          }
+        });
+
+        // 드롭다운 닫기
+        dropdown.classList.remove("show");
+
+        // 필터링된 결과 표시
+        displayReservations(getFilteredReservations());
+      };
+
+      // 예약 수정 (상태 + 기본 정보 수정)
       window.editReservation = async (id) => {
         try {
-          // 해당 예약 데이터 찾기
-          const reservation = allReservations.find((r) => r.id === id);
-          if (!reservation) {
+          const r = allReservations.find((x) => x.id === id);
+          if (!r) {
             alert("예약 정보를 찾을 수 없습니다.");
             return;
           }
 
-          const name = prompt("이름", reservation.name || "");
-          if (name === null) return;
+          const statusOptions = {
+            pending: "입금/확정 대기",
+            confirmed: "예약 확정",
+            cancelled: "예약 취소",
+          };
 
-          const email = prompt("이메일", reservation.email || "");
-          if (email === null) return;
+          const isExp = r.type === "experience";
 
-          const phone = prompt("전화번호", reservation.phone || "");
-          if (phone === null) return;
-
-          const whatsapp = prompt("WhatsApp ID", reservation.whatsapp || "");
-          if (whatsapp === null) return;
-
-          const checkin = prompt(
-            "체크인 (YYYY-MM-DD)",
-            reservation.checkin || ""
-          );
-          if (checkin === null) return;
-
-          const checkout = prompt(
-            "체크아웃 (YYYY-MM-DD)",
-            reservation.checkout || ""
-          );
-          if (checkout === null) return;
-
-          if (checkin && checkout && checkout <= checkin) {
-            alert(
-              "체크아웃 날짜가 체크인보다 같거나 이릅니다. 다시 확인해주세요."
+          if (isExp) {
+            // 체험 예약 편집
+            const repName = prompt("예약자명", r.repName || "");
+            if (repName === null) return;
+            const repEmail = prompt("이메일", r.repEmail || "");
+            if (repEmail === null) return;
+            const repPhone = prompt("연락처", r.repPhone || "");
+            if (repPhone === null) return;
+            const experienceDate = prompt(
+              "체험 날짜 (YYYY-MM-DD)",
+              r.experienceDate || ""
             );
-            return;
-          }
+            if (experienceDate === null) return;
+            const experienceTime = prompt(
+              "체험 시간 (HH:mm)",
+              r.experienceTime || ""
+            );
+            if (experienceTime === null) return;
+            const participantsStr = prompt(
+              "참가 인원",
+              String(r.participants || "")
+            );
+            if (participantsStr === null) return;
+            const participants = Number(participantsStr);
+            if (Number.isNaN(participants) || participants <= 0) {
+              alert("인원 수는 1 이상의 숫자여야 합니다.");
+              return;
+            }
 
-          const guestsStr = prompt("인원 수", reservation.guests || "");
-          if (guestsStr === null) return;
-          const guests = Number(guestsStr);
-          if (Number.isNaN(guests) || guests <= 0) {
-            alert("인원 수는 1 이상의 숫자여야 합니다.");
-            return;
-          }
+            // 상태 변경
+            const currentStatus = r.status || "pending";
+            let statusChoice = prompt(
+              `현재 상태: ${statusOptions[currentStatus]}\n\n상태를 변경하시겠습니까?\n1: 입금/확정 대기\n2: 예약 확정\n3: 예약 취소\n\n번호를 입력하세요 (취소하려면 취소 클릭):`,
+              currentStatus === "pending"
+                ? "1"
+                : currentStatus === "confirmed"
+                ? "2"
+                : "3"
+            );
+            if (statusChoice === null) return;
+            let status = currentStatus;
+            if (statusChoice === "1") status = "pending";
+            else if (statusChoice === "2") status = "confirmed";
+            else if (statusChoice === "3") status = "cancelled";
+            else {
+              alert("올바른 번호를 입력해주세요.");
+              return;
+            }
 
-          await updateDoc(doc(db, "reservations", id), {
-            name,
-            email,
-            emailLower: email.toLowerCase(),
-            phone,
-            whatsapp,
-            checkin,
-            checkout,
-            guests,
-          });
+            const pricePerPerson = Number(r.pricePerPerson || 40000);
+            const totalAmount = pricePerPerson * participants;
+
+            await updateDoc(doc(db, "reservations", id), {
+              repName,
+              repEmail,
+              repPhone,
+              experienceDate,
+              experienceTime,
+              participants,
+              pricePerPerson,
+              totalAmount,
+              status,
+            });
+          } else {
+            // 숙소 예약 편집
+            const name = prompt("예약자명", r.name || "");
+            if (name === null) return;
+            const email = prompt("이메일", r.email || "");
+            if (email === null) return;
+            const phone = prompt("연락처", r.phone || "");
+            if (phone === null) return;
+            const whatsapp = prompt("WhatsApp ID", r.whatsapp || "");
+            if (whatsapp === null) return;
+            const checkin = prompt("체크인 (YYYY-MM-DD)", r.checkin || "");
+            if (checkin === null) return;
+            const checkout = prompt("체크아웃 (YYYY-MM-DD)", r.checkout || "");
+            if (checkout === null) return;
+            if (checkin && checkout && checkout <= checkin) {
+              alert(
+                "체크아웃 날짜가 체크인보다 같거나 이릅니다. 다시 확인해주세요."
+              );
+              return;
+            }
+            const guestsStr = prompt("인원 수", String(r.guests || ""));
+            if (guestsStr === null) return;
+            const guests = Number(guestsStr);
+            if (Number.isNaN(guests) || guests <= 0) {
+              alert("인원 수는 1 이상의 숫자여야 합니다.");
+              return;
+            }
+
+            const currentStatus = r.status || "pending";
+            let statusChoice = prompt(
+              `현재 상태: ${statusOptions[currentStatus]}\n\n상태를 변경하시겠습니까?\n1: 입금/확정 대기\n2: 예약 확정\n3: 예약 취소\n\n번호를 입력하세요 (취소하려면 취소 클릭):`,
+              currentStatus === "pending"
+                ? "1"
+                : currentStatus === "confirmed"
+                ? "2"
+                : "3"
+            );
+            if (statusChoice === null) return;
+            let status = currentStatus;
+            if (statusChoice === "1") status = "pending";
+            else if (statusChoice === "2") status = "confirmed";
+            else if (statusChoice === "3") status = "cancelled";
+            else {
+              alert("올바른 번호를 입력해주세요.");
+              return;
+            }
+
+            await updateDoc(doc(db, "reservations", id), {
+              name,
+              email,
+              emailLower: email.toLowerCase(),
+              phone,
+              whatsapp,
+              checkin,
+              checkout,
+              guests,
+              status,
+            });
+          }
 
           alert("예약 정보가 수정되었습니다.");
           await loadReservations();
+          await loadSchedules();
         } catch (err) {
           console.error("수정 오류:", err);
           alert("수정 중 오류가 발생했습니다.");

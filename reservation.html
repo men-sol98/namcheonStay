@@ -45,11 +45,13 @@
             </li>
             <li>
               <a href="index.html#exp-program" data-i18n="nav_experience"
-                >체험 프로그램</a>
+                >체험 프로그램</a
+              >
             </li>
             <li>
               <a href="index.html#experience" data-i18n="nav_usage"
-                >이용 가이드</a>
+                >이용 가이드</a
+              >
             </li>
             <li><a href="index.html#rooms" data-i18n="nav_rooms">객실</a></li>
           </ul>
@@ -80,15 +82,32 @@
           <!-- 좌측: 체험 정보 -->
           <div class="room-info-card" id="experienceInfo">
             <div class="room-gallery">
-              <img id="experienceHero" alt="experience hero" class="room-hero-image" />
+              <img
+                id="experienceHero"
+                alt="experience hero"
+                class="room-hero-image"
+              />
             </div>
             <div class="room-details">
-              <h2 id="experienceTitle" data-i18n="exp_title_full">막걸리&동래파전 체험 (1시간 코스)</h2>
+              <h2 id="experienceTitle" data-i18n="exp_title_full">
+                막걸리&동래파전 체험 (1시간 코스)
+              </h2>
               <div class="highlight-list">
-                <p data-i18n="exp_highlight_1">✅ 1시간 완성: 바쁜 일정에 최적화된 고효율 코스 (체험+식사 동시 해결)</p>
-                <p data-i18n="exp_highlight_2">✅ 핵심 구성: 전문가와 함께하는 막걸리 3종 시음 및 동래파전 DIY</p>
-                <p data-i18n="exp_highlight_3">✅ 모두 환영: 비음주 고객을 위한 전통 음료 3종도 준비 완료</p>
-                <p data-i18n="exp_highlight_4">✅ 맞춤 배려: 채식주의자를 위한 해산물 제외 파전 별도 제작 가능</p>
+                <p data-i18n="exp_highlight_1">
+                  ✅ 1시간 완성: 바쁜 일정에 최적화된 고효율 코스 (체험+식사
+                  동시 해결)
+                </p>
+                <p data-i18n="exp_highlight_2">
+                  ✅ 핵심 구성: 전문가와 함께하는 막걸리 3종 시음 및 동래파전
+                  DIY
+                </p>
+                <p data-i18n="exp_highlight_3">
+                  ✅ 모두 환영: 비음주 고객을 위한 전통 음료 3종도 준비 완료
+                </p>
+                <p data-i18n="exp_highlight_4">
+                  ✅ 맞춤 배려: 채식주의자를 위한 해산물 제외 파전 별도 제작
+                  가능
+                </p>
               </div>
               <div class="price-box">
                 <strong data-i18n="exp_price_label">체험 가격 (1인당)</strong>
@@ -102,49 +121,108 @@
             <form id="reservationForm" class="booking-form">
               <div class="form-row">
                 <div class="form-group">
-                  <label for="experienceDate" class="required" data-i18n="form_date">체험 날짜</label>
-                  <input type="date" id="experienceDate" name="experienceDate" required data-i18n-placeholder="date_placeholder" placeholder="연도-월-일" />
+                  <label
+                    for="experienceDate"
+                    class="required"
+                    data-i18n="form_date"
+                    >체험 날짜</label
+                  >
+                  <input
+                    type="date"
+                    id="experienceDate"
+                    name="experienceDate"
+                    required
+                    data-i18n-placeholder="date_placeholder"
+                    placeholder="연도-월-일"
+                  />
                 </div>
                 <div class="form-group">
-                  <label for="experienceTime" class="required" data-i18n="form_time">체험 시간</label>
+                  <label
+                    for="experienceTime"
+                    class="required"
+                    data-i18n="form_time"
+                    >체험 시간</label
+                  >
                   <select id="experienceTime" name="experienceTime" required>
-                    <option value="" data-i18n="time_select_placeholder">시간을 선택해주세요</option>
+                    <option value="" data-i18n="time_select_placeholder">
+                      시간을 선택해주세요
+                    </option>
                     <option value="18:00">18:00</option>
                   </select>
                 </div>
               </div>
 
               <div class="form-group">
-                <label for="participants" class="required" data-i18n="form_participants">참가인원</label>
-                <input type="number" id="participants" name="participants" min="1" max="20" required />
+                <label
+                  for="participants"
+                  class="required"
+                  data-i18n="form_participants"
+                  >참가인원</label
+                >
+                <input
+                  type="number"
+                  id="participants"
+                  name="participants"
+                  min="1"
+                  max="20"
+                  required
+                />
+                <div id="remainingHint" class="remaining-hint"></div>
               </div>
 
               <div class="form-group">
-                <label for="repName" class="required" data-i18n="form_name">이름</label>
+                <label for="repName" class="required" data-i18n="form_name"
+                  >이름</label
+                >
                 <input type="text" id="repName" name="repName" required />
               </div>
               <div class="form-group">
-                <label for="repPhone" data-i18n="form_phone">연락처</label><span class="optional-tag" data-i18n="optional_tag">선택</span>
+                <label for="repPhone" data-i18n="form_phone">연락처</label
+                ><span class="optional-tag" data-i18n="optional_tag">선택</span>
                 <input type="tel" id="repPhone" name="repPhone" />
               </div>
               <div class="form-group">
-                <label for="repEmail" class="required" data-i18n="form_email">이메일</label>
+                <label for="repEmail" class="required" data-i18n="form_email"
+                  >이메일</label
+                >
                 <input type="email" id="repEmail" name="repEmail" required />
               </div>
 
               <div class="form-group">
                 <label data-i18n="form_extra_requests">추가 요청 사항</label>
                 <div class="checkbox-group">
-                  <label><input type="checkbox" id="optVegetarian" /> <span data-i18n="opt_vegetarian">채식 옵션 요청</span></label>
-                  <label><input type="checkbox" id="optNonalchol" /> <span data-i18n="opt_Nonalchol">음료 변경 옵션 요청</span></label>
-                  <label><input type="checkbox" id="optPickupG" /> <span data-i18n="opt_pickup_g">픽업 서비스 요청(경성대역)</span></label>
-                  <label><input type="checkbox" id="optPickupO" /> <span data-i18n="opt_pickup_o">픽업 서비스 요청(오륙도)</span></label>
+                  <label
+                    ><input type="checkbox" id="optVegetarian" />
+                    <span data-i18n="opt_vegetarian"
+                      >채식 옵션 요청</span
+                    ></label
+                  >
+                  <label
+                    ><input type="checkbox" id="optNonalchol" />
+                    <span data-i18n="opt_Nonalchol"
+                      >음료 변경 옵션 요청</span
+                    ></label
+                  >
+                  <label
+                    ><input type="checkbox" id="optPickupG" />
+                    <span data-i18n="opt_pickup_g"
+                      >픽업 서비스 요청(경성대역)</span
+                    ></label
+                  >
+                  <label
+                    ><input type="checkbox" id="optPickupO" />
+                    <span data-i18n="opt_pickup_o"
+                      >픽업 서비스 요청(오륙도)</span
+                    ></label
+                  >
                 </div>
               </div>
 
               <div class="total-box">
                 <div class="total-row">
-                  <span class="total-label" data-i18n="final_amount">최종 결제 금액:</span>
+                  <span class="total-label" data-i18n="final_amount"
+                    >최종 결제 금액:</span
+                  >
                   <strong id="totalAmountText">0 KRW</strong>
                 </div>
                 <button type="submit" class="booking-btn" id="submitBtn">
@@ -158,7 +236,11 @@
 
             <div class="info-box" style="margin-top: 16px">
               <p>
-                ✅ <span data-i18n="info_email_notice">예약 접수 후 확인 메일을 발송해 드립니다. 예약 내용 조회/변경/취소는 회신으로 요청해 주세요.</span>
+                ✅
+                <span data-i18n="info_email_notice"
+                  >예약 접수 후 확인 메일을 발송해 드립니다. 예약 내용
+                  조회/변경/취소는 회신으로 요청해 주세요.</span
+                >
               </p>
             </div>
           </div>
@@ -219,9 +301,11 @@
       const totalAmountText = document.getElementById("totalAmountText");
       const participantsEl = document.getElementById("participants");
       const experienceDateEl = document.getElementById("experienceDate");
+      const experienceTimeEl = document.getElementById("experienceTime");
       const submitBtn = document.getElementById("submitBtn");
       const heroImg = document.getElementById("experienceHero");
       const experienceTitleEl = document.getElementById("experienceTitle");
+      let currentRemaining = null; // 잔여석
 
       // 경험 정보 세팅
       heroImg.src = "./assets/images/experience_makgeolli.png";
@@ -241,8 +325,108 @@
         const count = Number(participantsEl.value || 0);
         const total = PRICE_PER_PERSON * Math.max(0, count);
         totalAmountText.textContent = formatKRW(total);
+        // 잔여석 제한 체크
+        if (currentRemaining !== null) {
+          if (count > currentRemaining) {
+            participantsEl.value = currentRemaining;
+            totalAmountText.textContent = formatKRW(
+              PRICE_PER_PERSON * currentRemaining
+            );
+          }
+          const hint = document.getElementById("remainingHint");
+          if (hint) {
+            if (currentRemaining <= 0) {
+              hint.textContent = "남은 정원: 0명 (예약 불가)";
+              hint.className = "remaining-hint danger";
+            } else {
+              hint.textContent = `남은 정원: ${currentRemaining}명`;
+              hint.className = "remaining-hint";
+            }
+          }
+        }
       }
       participantsEl.addEventListener("input", recalcTotal);
+      // 날짜/시간 선택 시 잔여석 조회
+      async function fetchRemaining() {
+        statusText.textContent = "";
+        currentRemaining = null;
+        const date = experienceDateEl.value;
+        const time = experienceTimeEl.value;
+        if (!date || !time) return;
+
+        try {
+          // 1) 스케줄 조회
+          const scheduleQ = query(
+            collection(db, "experienceSchedules"),
+            where("date", "==", date),
+            where("time", "==", time)
+          );
+          const scheduleSnap = await getDocs(scheduleQ);
+          if (scheduleSnap.empty) {
+            statusText.textContent =
+              "선택한 일자의 체험이 아직 준비되지 않았습니다.";
+            statusText.className = "status-message error";
+            currentRemaining = 0;
+            return;
+          }
+          let maxCapacity = 0;
+          scheduleSnap.forEach(
+            (d) => (maxCapacity = Number(d.data().maxCapacity) || 0)
+          );
+
+          // 2) 해당 날짜/시간 예약 인원 합산
+          const rQ = query(
+            collection(db, "reservations"),
+            where("type", "==", "experience"),
+            where("experienceDate", "==", date),
+            where("experienceTime", "==", time)
+          );
+          const rSnap = await getDocs(rQ);
+          let booked = 0;
+          rSnap.forEach((docSnap) => {
+            const d = docSnap.data();
+            booked += Number(d.participants || 0);
+          });
+
+          currentRemaining = Math.max(0, maxCapacity - booked);
+          // 입력 제한
+          participantsEl.max = String(currentRemaining);
+          if (!participantsEl.value || Number(participantsEl.value) === 0) {
+            participantsEl.value = currentRemaining > 0 ? 1 : 0;
+          } else if (Number(participantsEl.value) > currentRemaining) {
+            participantsEl.value = currentRemaining;
+          }
+
+          // 안내 출력
+          if (currentRemaining <= 0) {
+            statusText.className = "status-message error";
+            statusText.textContent = "해당 시간은 정원이 가득 찼습니다.";
+            submitBtn.disabled = true;
+          } else {
+            statusText.className = "status-message success";
+            statusText.textContent = `남은 정원: ${currentRemaining}명`;
+            submitBtn.disabled = false;
+          }
+          const hint = document.getElementById("remainingHint");
+          if (hint) {
+            if (currentRemaining <= 0) {
+              hint.textContent = "남은 정원: 0명 (예약 불가)";
+              hint.className = "remaining-hint danger";
+            } else {
+              hint.textContent = `남은 정원: ${currentRemaining}명`;
+              hint.className = "remaining-hint";
+            }
+          }
+          recalcTotal();
+        } catch (e) {
+          console.error("잔여석 조회 오류:", e);
+          statusText.className = "status-message error";
+          statusText.textContent = "잔여석 조회 중 오류가 발생했습니다.";
+        }
+      }
+
+      experienceDateEl.addEventListener("change", fetchRemaining);
+      experienceTimeEl.addEventListener("change", fetchRemaining);
       recalcTotal();
 
       // 제출
@@ -268,15 +452,32 @@
           createdAt: new Date().toISOString(),
         };
 
+        // 최종 잔여석 재검증
+        await fetchRemaining();
+        if (currentRemaining === null || currentRemaining <= 0) {
+          alert("해당 시간은 예약할 수 없습니다.");
+          submitBtn.disabled = false;
+          return;
+        }
+        if (data.participants > currentRemaining) {
+          alert(`남은 정원(${currentRemaining}명)을 초과했습니다.`);
+          submitBtn.disabled = false;
+          return;
+        }
+
         try {
           await addDoc(collection(db, "reservations"), data);
-          statusText.textContent = translations[currentLanguage]?.msg_success || "예약이 접수되었습니다.";
+          statusText.textContent =
+            translations[currentLanguage]?.msg_success ||
+            "예약이 접수되었습니다.";
           statusText.className = "status-message success";
           form.reset();
           recalcTotal();
         } catch (err) {
           console.error("예약 오류:", err);
-          statusText.textContent = translations[currentLanguage]?.msg_error || "예약 중 오류가 발생했습니다.";
+          statusText.textContent =
+            translations[currentLanguage]?.msg_error ||
+            "예약 중 오류가 발생했습니다.";
           statusText.className = "status-message error";
         } finally {
           submitBtn.disabled = false;

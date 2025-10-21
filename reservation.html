@@ -343,6 +343,14 @@
         return str.replace(/\{(\w+)\}/g, (_, k) => String(vars?.[k] ?? ""));
       }
 
+      // 로컬 날짜(YYYY-MM-DD) 포맷터 (UTC 변환 회피)
+      function formatDateLocal(date) {
+        const y = date.getFullYear();
+        const m = String(date.getMonth() + 1).padStart(2, "0");
+        const d = String(date.getDate()).padStart(2, "0");
+        return `${y}-${m}-${d}`;
+      }
+
       function formatKRW(amount) {
         return new Intl.NumberFormat("ko-KR").format(amount) + " KRW";
       }
@@ -383,7 +391,7 @@
         // 시간 선택 전: 어떤 시간대든 잔여석이 있는 날짜만 활성화
         if (!time || !availabilityByTime.has(time)) {
           const disableFnAny = (date) => {
-            const ds = date.toISOString().slice(0, 10);
+            const ds = formatDateLocal(date);
             return !availableDatesAllTimes.has(ds);
           };
           datePicker.set("disable", [disableFnAny]);
@@ -394,7 +402,7 @@
           Array.from(enabled).filter((d) => !full.has(d))
         );
         const disableFnTime = (date) => {
-          const ds = date.toISOString().slice(0, 10);
+          const ds = formatDateLocal(date);
           return !availableForTime.has(ds);
         };
         datePicker.set("disable", [disableFnTime]);

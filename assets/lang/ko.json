@@ -94,6 +94,8 @@
   "opt_Nonalchol": "음료 변경 옵션 요청",
   "footer_privacy": "개인정보처리방침",
   "footer_terms": "이용약관",
+  "hint_remaining": "남은 정원: {n}명",
+  "hint_remaining_zero": "남은 정원: 0명 (예약 불가)",
   "admin_logo": "사잇길 관리자",
   "admin_login_title": "관리자 로그인",
   "admin_login_subtitle": "Say It Gil Hotel 관리자 페이지에 접속하세요",

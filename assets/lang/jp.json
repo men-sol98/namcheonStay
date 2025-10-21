@@ -92,5 +92,7 @@
   "partner_cafe": "日記カフェ",
   "opt_Nonalchol": "ノンアル飲料に変更リクエスト",
   "footer_privacy": "プライバシーポリシー",
-  "footer_terms": "利用規約"
+  "footer_terms": "利用規約",
+  "hint_remaining": "残り定員: {n}名",
+  "hint_remaining_zero": "残り定員: 0名（予約不可）"
 }

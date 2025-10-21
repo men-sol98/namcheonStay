@@ -92,5 +92,7 @@
   "partner_cafe": "日記咖啡",
   "opt_Nonalchol": "更換為無酒精飲品",
   "footer_privacy": "隱私權政策",
-  "footer_terms": "服務條款"
+  "footer_terms": "服務條款",
+  "hint_remaining": "剩餘名額：{n}",
+  "hint_remaining_zero": "剩餘名額：0（無法預訂）"
 }

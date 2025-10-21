@@ -15,7 +15,6 @@
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap"
       rel="stylesheet"
     />
-    
   </head>
   <body>
     <header class="header">
@@ -30,8 +29,6 @@
           </ul>
         </nav>
 
-        
-
         <!-- 햄버거 메뉴 -->
         <div class="hamburger">
           <span></span>
@@ -45,7 +42,9 @@
       <section class="section login-section">
         <div class="container">
           <h1 class="section-title">관리자 로그인</h1>
-          <p class="section-subtitle">Say It Gil Hotel 관리자 페이지에 접속하세요</p>
+          <p class="section-subtitle">
+            Say It Gil Hotel 관리자 페이지에 접속하세요
+          </p>
 
           <div class="login-form-container">
             <form id="loginForm" class="login-form">
@@ -95,16 +94,25 @@
             </div>
             <div style="display: flex; gap: 1rem; align-items: center">
               <div class="status-filter-container">
-                <button class="status-filter-btn" onclick="toggleStatusDropdown()">상태 필터</button>
+                <button
+                  class="status-filter-btn"
+                  onclick="toggleStatusDropdown()"
+                >
+                  상태 필터
+                </button>
                 <div class="status-dropdown" id="statusDropdown">
-                  <button
-                    class="active" onclick="filterByStatus('all')">전체 보기</button>
-                  <button
-                    onclick="filterByStatus('pending')">입금/확정 대기</button>
-                  <button
-                    onclick="filterByStatus('confirmed')">예약 확정</button>
-                  <button
-                    onclick="filterByStatus('cancelled')">예약 취소</button>
+                  <button class="active" onclick="filterByStatus('all')">
+                    전체 보기
+                  </button>
+                  <button onclick="filterByStatus('pending')">
+                    입금/확정 대기
+                  </button>
+                  <button onclick="filterByStatus('confirmed')">
+                    예약 확정
+                  </button>
+                  <button onclick="filterByStatus('cancelled')">
+                    예약 취소
+                  </button>
                 </div>
               </div>
               <button onclick="logout()" class="logout-btn">
@@ -252,7 +260,13 @@
             />
           </div>
           <div class="modal-actions">
-            <button type="button" onclick="closeScheduleModal()" class="btn-cancel">취소</button>
+            <button
+              type="button"
+              onclick="closeScheduleModal()"
+              class="btn-cancel"
+            >
+              취소
+            </button>
             <button type="submit" class="booking-btn">저장</button>
           </div>
         </form>

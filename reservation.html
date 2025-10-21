@@ -306,6 +306,12 @@
       const heroImg = document.getElementById("experienceHero");
       const experienceTitleEl = document.getElementById("experienceTitle");
       let currentRemaining = null; // 잔여석
+      let datePicker = null; // flatpickr 인스턴스
+
+      // 가용성 맵: time -> { enabled:Set(date), full:Set(date) }
+      const availabilityByTime = new Map();
+      // 어떤 시간대든 잔여석이 있는 날짜의 집합
+      let availableDatesAllTimes = new Set();
 
       // 경험 정보 세팅
       heroImg.src = "./assets/images/experience_makgeolli.png";
@@ -315,7 +321,27 @@
       // 날짜 선택기 (단일 날짜)
       if (!window.flatpickr) console.error("flatpickr 로드 순서를 확인하세요.");
       flatpickr.localize(flatpickr.l10ns.ko);
-      flatpickr(experienceDateEl, { dateFormat: "Y-m-d", minDate: "today" });
+      datePicker = flatpickr(experienceDateEl, {
+        dateFormat: "Y-m-d",
+        minDate: "today",
+        disable: [],
+      });
+
+      // 번역 헬퍼
+      function t(key, fallback = "") {
+        try {
+          return (
+            translations[currentLanguage]?.[key] ||
+            translations["ko"]?.[key] ||
+            fallback
+          );
+        } catch {
+          return fallback;
+        }
+      }
+      function fmt(str, vars) {
+        return str.replace(/\{(\w+)\}/g, (_, k) => String(vars?.[k] ?? ""));
+      }
 
       function formatKRW(amount) {
         return new Intl.NumberFormat("ko-KR").format(amount) + " KRW";
@@ -336,16 +362,113 @@
           const hint = document.getElementById("remainingHint");
           if (hint) {
             if (currentRemaining <= 0) {
-              hint.textContent = "남은 정원: 0명 (예약 불가)";
+              hint.textContent = t(
+                "hint_remaining_zero",
+                "남은 정원: 0명 (예약 불가)"
+              );
               hint.className = "remaining-hint danger";
             } else {
-              hint.textContent = `남은 정원: ${currentRemaining}명`;
+              hint.textContent = fmt(t("hint_remaining", "남은 정원: {n}명"), {
+                n: currentRemaining,
+              });
               hint.className = "remaining-hint";
             }
           }
         }
       }
       participantsEl.addEventListener("input", recalcTotal);
+      // 달력 비활성화 적용 (선택된 시간 기준)
+      function applyDisabledDatesForTime(time) {
+        if (!datePicker) return;
+        // 시간 선택 전: 어떤 시간대든 잔여석이 있는 날짜만 활성화
+        if (!time || !availabilityByTime.has(time)) {
+          const disableFnAny = (date) => {
+            const ds = date.toISOString().slice(0, 10);
+            return !availableDatesAllTimes.has(ds);
+          };
+          datePicker.set("disable", [disableFnAny]);
+          return;
+        }
+        const { enabled, full } = availabilityByTime.get(time);
+        const availableForTime = new Set(
+          Array.from(enabled).filter((d) => !full.has(d))
+        );
+        const disableFnTime = (date) => {
+          const ds = date.toISOString().slice(0, 10);
+          return !availableForTime.has(ds);
+        };
+        datePicker.set("disable", [disableFnTime]);
+      }
+
+      // 가용성 로드 (스케줄/예약 합산 → 남은 정원 계산)
+      async function loadAvailability() {
+        try {
+          const todayStr = new Date().toISOString().slice(0, 10);
+          // 1) 스케줄 로드
+          const scheduleSnap = await getDocs(
+            collection(db, "experienceSchedules")
+          );
+          const scheduleMap = new Map(); // key: date__time -> maxCapacity
+          const times = new Set();
+          scheduleSnap.forEach((docSnap) => {
+            const d = docSnap.data();
+            if (!d?.date || !d?.time) return;
+            times.add(d.time);
+            scheduleMap.set(`${d.date}__${d.time}`, Number(d.maxCapacity || 0));
+          });
+
+          // 2) 해당 스케줄 범위의 예약 로드 (미래 위주)
+          const rSnap = await getDocs(
+            query(
+              collection(db, "reservations"),
+              where("type", "==", "experience")
+            )
+          );
+          const bookedMap = new Map(); // key: date__time -> sum
+          rSnap.forEach((docSnap) => {
+            const r = docSnap.data();
+            const key = `${r.experienceDate}__${r.experienceTime}`;
+            if (!r.experienceDate || !r.experienceTime) return;
+            const prev = bookedMap.get(key) || 0;
+            bookedMap.set(key, prev + Number(r.participants || 0));
+          });
+
+          // 3) 시간별 가능/만석 날짜 집계
+          availabilityByTime.clear();
+          availableDatesAllTimes = new Set();
+          times.forEach((time) => {
+            availabilityByTime.set(time, {
+              enabled: new Set(),
+              full: new Set(),
+            });
+          });
+          scheduleMap.forEach((maxCap, key) => {
+            const [date, time] = key.split("__");
+            const booked = bookedMap.get(key) || 0;
+            const remaining = Math.max(
+              0,
+              Number(maxCap || 0) - Number(booked || 0)
+            );
+            const entry = availabilityByTime.get(time) || {
+              enabled: new Set(),
+              full: new Set(),
+            };
+            entry.enabled.add(date);
+            if (remaining === 0) entry.full.add(date);
+            availabilityByTime.set(time, entry);
+            if (remaining > 0) availableDatesAllTimes.add(date);
+          });
+
+          // 현재 선택된 시간 기준으로 달력 비활성화 적용
+          applyDisabledDatesForTime(experienceTimeEl.value);
+        } catch (e) {
+          console.error("가용성 로드 오류:", e);
+        }
+      }
+
+      // 최초 가용성 로드
+      loadAvailability();
+
       // 날짜/시간 선택 시 잔여석 조회
       async function fetchRemaining() {
         statusText.textContent = "";
@@ -410,10 +533,15 @@
           const hint = document.getElementById("remainingHint");
           if (hint) {
             if (currentRemaining <= 0) {
-              hint.textContent = "남은 정원: 0명 (예약 불가)";
+              hint.textContent = t(
+                "hint_remaining_zero",
+                "남은 정원: 0명 (예약 불가)"
+              );
               hint.className = "remaining-hint danger";
             } else {
-              hint.textContent = `남은 정원: ${currentRemaining}명`;
+              hint.textContent = fmt(t("hint_remaining", "남은 정원: {n}명"), {
+                n: currentRemaining,
+              });
               hint.className = "remaining-hint";
             }
           }
@@ -426,7 +554,10 @@
       }
 
       experienceDateEl.addEventListener("change", fetchRemaining);
-      experienceTimeEl.addEventListener("change", fetchRemaining);
+      experienceTimeEl.addEventListener("change", () => {
+        applyDisabledDatesForTime(experienceTimeEl.value);
+        fetchRemaining();
+      });
       recalcTotal();
 
       // 제출

@@ -94,6 +94,8 @@
   "footer_privacy": "Privacy Policy",
   "footer_terms": "Terms of Service"
 ,
+  "hint_remaining": "Remaining seats: {n}",
+  "hint_remaining_zero": "Remaining seats: 0 (unavailable)",
   "admin_logo": "Admin",
   "admin_login_title": "Admin Login",
   "admin_login_subtitle": "Access the Say It Gil Hotel admin page",

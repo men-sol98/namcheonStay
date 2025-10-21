@@ -1233,6 +1233,45 @@ body {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
+/* 페이지네이션 - 가로 정렬 및 현재 페이지 강조 */
+.pagination {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 0.75rem;
+}
+
+.pagination .refresh-btn {
+  padding: 0.4rem 0.8rem;
+  border-radius: 9999px;
+  line-height: 1;
+}
+
+.pagination .refresh-btn.active {
+  background-color: #fff;
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+}
+
+.pagination .refresh-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* 남은 정원 0일 때 행 비활성화 스타일 */
+.admin-table tr.row-disabled {
+  background-color: #f3f4f6;
+}
+.admin-table tr.row-disabled td {
+  color: #787878;
+}
+/* .admin-table tr.row-disabled:hover {
+  background-color: #bdbdbd;
+} */
+
 .admin-table {
   width: 100%;
   border-collapse: collapse;

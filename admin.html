@@ -15,12 +15,12 @@
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap"
       rel="stylesheet"
     />
-    <script src="assets/js/i18n.js"></script>
+    
   </head>
   <body>
     <header class="header">
       <div class="nav-container">
-        <a href="index.html" class="logo" data-i18n="admin_logo">사잇길 관리자</a>
+        <a href="index.html" class="logo">사잇길 관리자</a>
 
         <!-- 내비게이션 -->
         <nav class="nav">
@@ -30,13 +30,7 @@
           </ul>
         </nav>
 
-        <!-- 언어 전환 버튼 -->
-        <div class="lang-switch">
-          <button onclick="changeLanguage('ko')">한국어</button>
-          <button onclick="changeLanguage('en')">English</button>
-          <button onclick="changeLanguage('jp')">日本語</button>
-          <button onclick="changeLanguage('tw')">繁體中文</button>
-        </div>
+        
 
         <!-- 햄버거 메뉴 -->
         <div class="hamburger">
@@ -50,13 +44,13 @@
     <main class="admin-container">
       <section class="section login-section">
         <div class="container">
-          <h1 class="section-title" data-i18n="admin_login_title">관리자 로그인</h1>
-          <p class="section-subtitle" data-i18n="admin_login_subtitle">Say It Gil Hotel 관리자 페이지에 접속하세요</p>
+          <h1 class="section-title">관리자 로그인</h1>
+          <p class="section-subtitle">Say It Gil Hotel 관리자 페이지에 접속하세요</p>
 
           <div class="login-form-container">
             <form id="loginForm" class="login-form">
               <div class="form-group">
-                <label for="adminEmail" data-i18n="form_email">
+                <label for="adminEmail">
                   <i class="fas fa-envelope"></i>
                 </label>
                 <input
@@ -69,7 +63,7 @@
               </div>
 
               <div class="form-group">
-                <label for="adminPassword" data-i18n="form_password">
+                <label for="adminPassword">
                   <i class="fas fa-lock"></i>
                 </label>
                 <input
@@ -81,7 +75,7 @@
                 />
               </div>
 
-              <button type="submit" class="login-btn" data-i18n="login_btn">
+              <button type="submit" class="login-btn">
                 <i class="fas fa-sign-in-alt"></i>
                 로그인
               </button>
@@ -94,22 +88,26 @@
         <div class="container">
           <div class="admin-header">
             <div>
-              <h2 class="section-title" data-i18n="admin_dashboard_title">막걸리 체험 관리자 대시보드</h2>
+              <h2 class="section-title">막걸리 체험 관리자 대시보드</h2>
               <div class="admin-id-display">
                 관리자 ID: <span id="adminUserId">-</span>
               </div>
             </div>
             <div style="display: flex; gap: 1rem; align-items: center">
               <div class="status-filter-container">
-                <button class="status-filter-btn" onclick="toggleStatusDropdown()" data-i18n="status_filter">상태 필터</button>
+                <button class="status-filter-btn" onclick="toggleStatusDropdown()">상태 필터</button>
                 <div class="status-dropdown" id="statusDropdown">
-                  <button class="active" onclick="filterByStatus('all')" data-i18n="filter_all">전체 보기</button>
-                  <button onclick="filterByStatus('pending')" data-i18n="filter_pending">입금/확정 대기</button>
-                  <button onclick="filterByStatus('confirmed')" data-i18n="filter_confirmed">예약 확정</button>
-                  <button onclick="filterByStatus('cancelled')" data-i18n="filter_cancelled">예약 취소</button>
+                  <button
+                    class="active" onclick="filterByStatus('all')">전체 보기</button>
+                  <button
+                    onclick="filterByStatus('pending')">입금/확정 대기</button>
+                  <button
+                    onclick="filterByStatus('confirmed')">예약 확정</button>
+                  <button
+                    onclick="filterByStatus('cancelled')">예약 취소</button>
                 </div>
               </div>
-              <button onclick="logout()" class="logout-btn" data-i18n="logout_btn">
+              <button onclick="logout()" class="logout-btn">
                 <i class="fas fa-sign-out-alt"></i>
                 로그아웃
               </button>
@@ -149,10 +147,19 @@
           <!-- 체험 정원 관리 섹션 -->
           <div class="admin-table-container">
             <div class="table-header">
-              <h3 data-i18n="schedule_section_title">체험 정원 관리</h3>
-              <button onclick="openScheduleModal()" class="refresh-btn" data-i18n="schedule_add">
+              <h3>체험 정원 관리</h3>
+              <button onclick="openScheduleModal()" class="refresh-btn">
                 <i class="fas fa-plus"></i>
                 정원 추가
+              </button>
+              <button
+                id="bulkGenerateBtn"
+                onclick="openBulkModal()"
+                class="refresh-btn"
+                title="특정 기간 동안 (매일 18:00, 정원 40) 일괄 생성"
+              >
+                <i class="fas fa-calendar-plus"></i>
+                기간 생성
               </button>
             </div>
 
@@ -160,23 +167,24 @@
               <table class="admin-table">
                 <thead>
                   <tr>
-                    <th data-i18n="th_date">날짜</th>
-                    <th data-i18n="th_time">시간</th>
-                    <th data-i18n="th_max_capacity">최대 정원</th>
-                    <th data-i18n="th_booked">예약 인원</th>
-                    <th data-i18n="th_remaining">남은 정원</th>
-                    <th data-i18n="th_actions">관리</th>
+                    <th>날짜</th>
+                    <th>시간</th>
+                    <th>최대 정원</th>
+                    <th>예약 인원</th>
+                    <th>남은 정원</th>
+                    <th>관리</th>
                   </tr>
                 </thead>
                 <tbody id="scheduleTable"></tbody>
               </table>
             </div>
+            <div id="schedulePagination" class="pagination"></div>
           </div>
 
           <!-- 예약 현황 섹션 -->
           <div class="admin-table-container" style="margin-top: 2rem">
             <div class="table-header">
-              <h3 data-i18n="reservation_status_title">예약 현황</h3>
+              <h3>예약 현황</h3>
               <div class="table-controls">
                 <input
                   type="text"
@@ -195,12 +203,12 @@
               <table class="admin-table">
                 <thead>
                   <tr>
-                    <th data-i18n="th_name">예약자명</th>
-                    <th data-i18n="th_time">시간</th>
-                    <th data-i18n="th_people_amount">인원/금액</th>
-                    <th data-i18n="th_status">상태</th>
-                    <th data-i18n="th_contact">연락처</th>
-                    <th data-i18n="th_actions">관리</th>
+                    <th>예약자명</th>
+                    <th>시간</th>
+                    <th>인원/금액</th>
+                    <th>상태</th>
+                    <th>연락처</th>
+                    <th>관리</th>
                   </tr>
                 </thead>
                 <tbody id="adminTable"></tbody>
@@ -215,25 +223,25 @@
     <div id="scheduleModal" class="modal hidden">
       <div class="modal-content">
         <div class="modal-header">
-          <h3 id="modalTitle" data-i18n="schedule_add_title">체험 정원 추가</h3>
+          <h3 id="modalTitle">체험 정원 추가</h3>
           <button onclick="closeScheduleModal()" class="modal-close">
             <i class="fas fa-times"></i>
           </button>
         </div>
         <form id="scheduleForm" class="modal-form">
           <div class="form-group">
-            <label for="scheduleDate" class="required" data-i18n="form_date">체험 날짜</label>
+            <label for="scheduleDate" class="required">체험 날짜</label>
             <input type="date" id="scheduleDate" name="scheduleDate" required />
           </div>
           <div class="form-group">
-            <label for="scheduleTime" class="required" data-i18n="form_time">체험 시간</label>
+            <label for="scheduleTime" class="required">체험 시간</label>
             <select id="scheduleTime" name="scheduleTime" required>
               <option value="">시간을 선택하세요</option>
               <option value="18:00">18:00</option>
             </select>
           </div>
           <div class="form-group">
-            <label for="maxCapacity" class="required" data-i18n="th_max_capacity">최대 정원</label>
+            <label for="maxCapacity" class="required">최대 정원</label>
             <input
               type="number"
               id="maxCapacity"
@@ -244,14 +252,55 @@
             />
           </div>
           <div class="modal-actions">
-            <button
-              type="button"
-              onclick="closeScheduleModal()"
-              class="btn-cancel" data-i18n="cancel_btn"
-            >
+            <button type="button" onclick="closeScheduleModal()" class="btn-cancel">취소</button>
+            <button type="submit" class="booking-btn">저장</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- 기간 일괄 생성 모달 -->
+    <div id="bulkModal" class="modal hidden">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>기간별 스케줄 생성</h3>
+          <button onclick="closeBulkModal()" class="modal-close">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <form id="bulkForm" class="modal-form">
+          <div class="form-group">
+            <label for="bulkStart" class="required">시작 날짜</label>
+            <input type="date" id="bulkStart" name="bulkStart" required />
+          </div>
+          <div class="form-group">
+            <label for="bulkEnd" class="required">종료 날짜</label>
+            <input type="date" id="bulkEnd" name="bulkEnd" required />
+          </div>
+          <div class="form-group">
+            <label for="bulkTime" class="required">체험 시간</label>
+            <select id="bulkTime" name="bulkTime" required>
+              <option value="">시간을 선택하세요</option>
+              <option value="18:00">18:00</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="bulkCapacity" class="required">최대 정원</label>
+            <input
+              type="number"
+              id="bulkCapacity"
+              name="bulkCapacity"
+              min="1"
+              max="50"
+              value="40"
+              required
+            />
+          </div>
+          <div class="modal-actions">
+            <button type="button" onclick="closeBulkModal()" class="btn-cancel">
               취소
             </button>
-            <button type="submit" class="booking-btn" data-i18n="save_btn">저장</button>
+            <button type="submit" class="booking-btn">생성</button>
           </div>
         </form>
       </div>
@@ -316,6 +365,8 @@
       const adminPanel = document.getElementById("adminPanel");
       const tableBody = document.getElementById("adminTable");
       const scheduleTable = document.getElementById("scheduleTable");
+      const schedulePaginationEl =
+        document.getElementById("schedulePagination");
       const searchInput = document.getElementById("searchInput");
       const totalReservations = document.getElementById("totalReservations");
       const totalGuests = document.getElementById("totalGuests");
@@ -323,11 +374,16 @@
       const adminUserId = document.getElementById("adminUserId");
       const scheduleModal = document.getElementById("scheduleModal");
       const scheduleForm = document.getElementById("scheduleForm");
+      const bulkGenerateBtn = document.getElementById("bulkGenerateBtn");
+      const bulkModal = document.getElementById("bulkModal");
+      const bulkForm = document.getElementById("bulkForm");
 
       let allReservations = [];
       let allSchedules = [];
       let currentStatusFilter = "all";
       let editingScheduleId = null;
+      let scheduleCurrentPage = 1;
+      const scheduleItemsPerPage = 7;
 
       // 로그인 처리
       loginForm.addEventListener("submit", async (e) => {
@@ -404,6 +460,7 @@
             const d = docSnap.data();
             allSchedules.push({ id: docSnap.id, ...d });
           });
+          scheduleCurrentPage = 1;
           renderSchedules();
         } catch (e) {
           console.error("스케줄 로드 오류:", e);
@@ -419,6 +476,7 @@
               <td colspan="6" class="no-data">등록된 스케줄이 없습니다.</td>
             </tr>
           `;
+          if (schedulePaginationEl) schedulePaginationEl.innerHTML = "";
           return;
         }
 
@@ -438,12 +496,23 @@
           return (a.date || "").localeCompare(b.date || "");
         });
 
-        for (const s of sorted) {
+        // 페이지네이션 계산
+        const totalPages = Math.max(
+          1,
+          Math.ceil(sorted.length / scheduleItemsPerPage)
+        );
+        if (scheduleCurrentPage > totalPages) scheduleCurrentPage = totalPages;
+        const startIdx = (scheduleCurrentPage - 1) * scheduleItemsPerPage;
+        const endIdx = startIdx + scheduleItemsPerPage;
+        const pageItems = sorted.slice(startIdx, endIdx);
+
+        for (const s of pageItems) {
           const key = `${s.date}__${s.time}`;
           const booked = countByKey.get(key) || 0;
           const remaining = Math.max(0, (Number(s.maxCapacity) || 0) - booked);
 
           const tr = document.createElement("tr");
+          if (remaining === 0) tr.classList.add("row-disabled");
           tr.innerHTML = `
             <td>${s.date || "-"}</td>
             <td>${s.time || "-"}</td>
@@ -465,6 +534,45 @@
           `;
           scheduleTable.appendChild(tr);
         }
+
+        // 페이지네이션 렌더링
+        if (!schedulePaginationEl) return;
+        if (totalPages <= 1) {
+          schedulePaginationEl.innerHTML = "";
+          return;
+        }
+        let html = "";
+        const prevDisabled = scheduleCurrentPage === 1 ? "disabled" : "";
+        const nextDisabled =
+          scheduleCurrentPage === totalPages ? "disabled" : "";
+        // 처음, 이전
+        html += `<button class=\"refresh-btn\" ${prevDisabled} onclick=\"goToSchedulePage(1)\">&laquo;</button>`;
+        html += `<button class=\"refresh-btn\" ${prevDisabled} onclick=\"goToSchedulePage(${Math.max(
+          1,
+          scheduleCurrentPage - 1
+        )})\">이전</button>`;
+        // 최대 7개 숫자 버튼 윈도우
+        const maxButtons = 7;
+        let startPage = Math.max(
+          1,
+          scheduleCurrentPage - Math.floor(maxButtons / 2)
+        );
+        let endPage = startPage + maxButtons - 1;
+        if (endPage > totalPages) {
+          endPage = totalPages;
+          startPage = Math.max(1, endPage - maxButtons + 1);
+        }
+        for (let p = startPage; p <= endPage; p++) {
+          const activeClass = p === scheduleCurrentPage ? "active" : "";
+          html += `<button class=\"refresh-btn ${activeClass}\" onclick=\"goToSchedulePage(${p})\">${p}</button>`;
+        }
+        // 다음, 마지막
+        html += `<button class=\"refresh-btn\" ${nextDisabled} onclick=\"goToSchedulePage(${Math.min(
+          totalPages,
+          scheduleCurrentPage + 1
+        )})\">다음</button>`;
+        html += `<button class=\"refresh-btn\" ${nextDisabled} onclick=\"goToSchedulePage(${totalPages})\">&raquo;</button>`;
+        schedulePaginationEl.innerHTML = html;
       }
 
       // 모달 열기/닫기
@@ -494,6 +602,39 @@
 
       window.closeScheduleModal = () => {
         scheduleModal.classList.add("hidden");
+      };
+
+      // 기간 생성 모달 열기/닫기
+      window.openBulkModal = () => {
+        const start = document.getElementById("bulkStart");
+        const end = document.getElementById("bulkEnd");
+        const time = document.getElementById("bulkTime");
+        const cap = document.getElementById("bulkCapacity");
+        const today = new Date();
+        const pad2 = (n) => (n < 10 ? `0${n}` : `${n}`);
+        const fmt = (d) =>
+          `${d.getFullYear()}-${pad2(d.getMonth() + 1)}-${pad2(d.getDate())}`;
+        start.value = fmt(today);
+        end.value = fmt(
+          new Date(today.getFullYear(), today.getMonth(), today.getDate())
+        );
+        time.value = "18:00";
+        cap.value = 40;
+        bulkModal.classList.remove("hidden");
+      };
+      window.closeBulkModal = () => {
+        bulkModal.classList.add("hidden");
+      };
+
+      // 스케줄 페이지 이동
+      window.goToSchedulePage = (page) => {
+        const totalPages = Math.max(
+          1,
+          Math.ceil(allSchedules.length / scheduleItemsPerPage)
+        );
+        const next = Math.min(Math.max(1, Number(page) || 1), totalPages);
+        scheduleCurrentPage = next;
+        renderSchedules();
       };
 
       // 스케줄 저장 (추가/수정)
@@ -533,6 +674,90 @@
         } catch (e) {
           console.error("스케줄 저장 오류:", e);
           alert("저장 중 오류가 발생했습니다.");
+        }
+      });
+
+      // 기간별 스케줄 일괄 생성 (유동 범위, 지정 시간/정원)
+      bulkForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const startStr = (
+          document.getElementById("bulkStart").value || ""
+        ).trim();
+        const endStr = (document.getElementById("bulkEnd").value || "").trim();
+        const time = (document.getElementById("bulkTime").value || "").trim();
+        const cap = Number(document.getElementById("bulkCapacity").value || 0);
+        if (!startStr || !endStr || !time || !cap || cap <= 0) {
+          alert("모든 값을 올바르게 입력해주세요.");
+          return;
+        }
+        if (endStr < startStr) {
+          alert("종료 날짜가 시작 날짜보다 빠릅니다.");
+          return;
+        }
+        try {
+          const confirmMsg = `${startStr} ~ ${endStr} 기간에 매일 ${time}, 정원 ${cap}명 스케줄을 생성할까요?\n이미 있는 동일 시간 스케줄은 건너뜁니다.`;
+          if (!confirm(confirmMsg)) return;
+          if (bulkGenerateBtn) {
+            bulkGenerateBtn.disabled = true;
+            bulkGenerateBtn.innerHTML =
+              '<i class="fas fa-spinner fa-spin"></i> 생성 중...';
+          }
+          // 기존 스케줄 조회 (date 범위)
+          const snap = await getDocs(
+            query(
+              collection(db, "experienceSchedules"),
+              where("date", ">=", startStr),
+              where("date", "<=", endStr)
+            )
+          );
+          const existing = new Set();
+          snap.forEach((docSnap) => {
+            const d = docSnap.data();
+            if (d && d.date && d.time) existing.add(`${d.date}__${d.time}`);
+          });
+          // 날짜 루프
+          const [sy, sm, sd] = startStr.split("-").map((v) => Number(v));
+          const [ey, em, ed] = endStr.split("-").map((v) => Number(v));
+          const start = new Date(sy, sm - 1, sd);
+          const end = new Date(ey, em - 1, ed);
+          const pad2 = (n) => (n < 10 ? `0${n}` : `${n}`);
+          const fmt = (d) =>
+            `${d.getFullYear()}-${pad2(d.getMonth() + 1)}-${pad2(d.getDate())}`;
+          const targets = [];
+          for (
+            let cur = new Date(start.getTime());
+            cur.getTime() <= end.getTime();
+            cur.setDate(cur.getDate() + 1)
+          ) {
+            const ds = fmt(cur);
+            const key = `${ds}__${time}`;
+            if (!existing.has(key)) targets.push(ds);
+          }
+          if (targets.length === 0) {
+            alert("추가할 스케줄이 없습니다.");
+            return;
+          }
+          // 순차 생성
+          for (const ds of targets) {
+            await addDoc(collection(db, "experienceSchedules"), {
+              date: ds,
+              time,
+              maxCapacity: cap,
+              createdAt: new Date().toISOString(),
+            });
+          }
+          alert(`${targets.length}개의 스케줄을 생성했습니다.`);
+          closeBulkModal();
+          await loadSchedules();
+        } catch (e) {
+          console.error("기간 일괄 생성 오류:", e);
+          alert("일괄 생성 중 오류가 발생했습니다.");
+        } finally {
+          if (bulkGenerateBtn) {
+            bulkGenerateBtn.disabled = false;
+            bulkGenerateBtn.innerHTML =
+              '<i class="fas fa-calendar-plus"></i> 기간 생성';
+          }
         }
       });
 
